@@ -89,15 +89,41 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .empty{text-align:center;padding:52px 16px;color:var(--muted);font-size:14px;}
 .empty-ico{font-size:32px;margin-bottom:10px;}
 .loading{text-align:center;padding:40px;color:var(--muted);font-size:13px;}
+
+/* BOOKING */
 .book-top{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50;}
 .book-top img{height:48px;width:auto;}
 .book-top-info h1{font-size:15px;font-weight:600;}
 .book-top-info p{font-size:12px;color:var(--muted);}
 .book-body{max-width:600px;margin:0 auto;padding:24px;}
 .book-notice{display:flex;align-items:flex-start;gap:12px;background:#FFF8E7;border:1px solid #F5C518;border-radius:var(--r);padding:14px 16px;margin-bottom:24px;}
-.book-notice-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.book-notice-icon{font-size:20px;flex-shrink:0;}
 .book-notice-text{font-size:13px;color:#7A4F00;line-height:1.6;}
 .book-notice-text strong{font-weight:600;display:block;margin-bottom:2px;}
+
+/* TABS */
+.tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:24px;}
+.tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;background:var(--surface);border:none;transition:all .12s;}
+.tab:first-child{border-right:1px solid var(--border);}
+.tab.active{background:var(--accent);color:#fff;font-weight:600;}
+.tab:hover:not(.active){background:var(--bg);}
+
+/* CONSULTA */
+.consulta-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:24px;margin-bottom:16px;}
+.consulta-wrap h2{font-size:15px;font-weight:600;margin-bottom:6px;}
+.consulta-wrap p{font-size:13px;color:var(--muted);margin-bottom:18px;}
+.consulta-input-row{display:flex;gap:10px;}
+.consulta-input-row input{flex:1;padding:9px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:14px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
+.consulta-input-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,79,138,.1);}
+.btn-consultar{background:var(--accent);color:#fff;border:none;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+.btn-consultar:hover{background:#163f70;}
+.consulta-result{margin-top:20px;}
+.consulta-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:8px;}
+.consulta-item-title{font-size:14px;font-weight:600;margin-bottom:4px;}
+.consulta-item-meta{font-size:12px;color:var(--muted);line-height:1.7;}
+.consulta-empty{text-align:center;padding:24px;color:var(--muted);font-size:13px;}
+.consulta-err{font-size:12px;color:var(--red);margin-top:8px;}
+
 .book-section{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
 .slot-group{margin-bottom:20px;}
 .slot-week{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--border);}
@@ -132,7 +158,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .confirm-t{font-size:18px;font-weight:600;margin-bottom:6px;}
 .confirm-highlight{font-size:15px;font-weight:600;color:var(--accent);margin:10px 0 4px;}
 .confirm-d{font-size:14px;color:var(--muted);line-height:1.8;}
-@media(max-width:600px){.sidebar{display:none;}.content{padding:16px;}.fg-2,.fg-3,.book-form-actions{grid-template-columns:1fr;}}
+@media(max-width:600px){.sidebar{display:none;}.content{padding:16px;}.fg-2,.fg-3,.book-form-actions{grid-template-columns:1fr;}.consulta-input-row{flex-direction:column;}}
 </style>
 </head>
 <body>
@@ -159,6 +185,7 @@ async function updateAgenda(id,data){return sb('agendas?id=eq.'+id,'PATCH',data)
 async function deleteAgenda(id){return sb('agendas?id=eq.'+id,'DELETE');}
 async function getBookings(aid){return sb('bookings?agenda_id=eq.'+aid);}
 async function getAllBookings(){return sb('bookings?order=criado_em.asc');}
+async function getBookingsByWA(wa){const clean=wa.replace(/\D/g,'');return sb('bookings?whatsapp=ilike.*'+encodeURIComponent(clean)+'*&order=criado_em.desc');}
 async function insertBooking(bk){return sb('bookings','POST',bk);}
 async function deleteBooking(id){return sb('bookings?id=eq.'+id,'DELETE');}
 
@@ -184,11 +211,14 @@ function genSlots(ag){
 
 let S={
   view:'login',loginErr:'',nav:'agendas',
-  modal:null, editingId:null,
+  modal:null,editingId:null,
   form:{titulo:'',semanas:4,dias:[],inicio:'07:00',fim:'08:30',vagas:5},
   agendas:[],allBookings:[],
   copied:null,notice:false,loading:false,
-  bp:{agendaId:null,slotKey:null,step:'choose',aluno:{nome:'',turma:'',whatsapp:''},err:'',done:false,lastBooking:null,agenda:null,bookings:[]}
+  bp:{agendaId:null,slotKey:null,step:'choose',tab:'agendar',
+      aluno:{nome:'',turma:'',whatsapp:''},err:'',done:false,lastBooking:null,
+      agenda:null,bookings:[],
+      consultaWA:'',consultaResult:null,consultaErr:'',consultaLoading:false}
 };
 
 const app=document.getElementById('app');
@@ -238,10 +268,8 @@ function renderAgendas(){return`
       const pct=total>0?ocup/total:0,bc=pct===0?'badge-open':pct>=1?'badge-full':'badge-partial',bt=pct===0?'Aberta':pct>=1?'Lotada':'Em andamento';
       return`<div class="agenda-card">
         <div class="ac-top">
-          <div>
-            <div class="ac-title">${ag.titulo}</div>
-            <div class="ac-meta">${ag.dias.map(d=>WD[d]).join(', ')} · ${ag.inicio}–${ag.fim} · ${ag.semanas} semana(s) · ${slots.length} datas · ${max} vagas/slot<br>${ocup} de ${total} vagas preenchidas</div>
-          </div>
+          <div><div class="ac-title">${ag.titulo}</div>
+          <div class="ac-meta">${ag.dias.map(d=>WD[d]).join(', ')} · ${ag.inicio}–${ag.fim} · ${ag.semanas} semana(s) · ${slots.length} datas · ${max} vagas/slot<br>${ocup} de ${total} vagas preenchidas</div></div>
           <div class="ac-actions">
             <span class="badge ${bc}">${bt}</span>
             <button class="btn-sm btn-sm-blue" data-edit="${ag.id}">Editar</button>
@@ -297,7 +325,7 @@ async function renderBookPage(aid){
   try{
     const[agendas,bookings]=await Promise.all([getAgendas(),getBookings(aid)]);
     const ag=agendas.find(a=>a.id===aid);
-    S.bp={...S.bp,agenda:ag,bookings:bookings||[],agendaId:aid};
+    S.bp={...S.bp,agenda:ag,bookings:bookings||[],agendaId:aid,step:'choose',slotKey:null,done:false,tab:S.bp.tab||'agendar'};
     app.innerHTML=renderBook();bindBook();
   }catch(e){app.innerHTML='<div class="empty" style="padding:80px;"><div class="empty-ico">❌</div>Erro ao carregar. Tente novamente.</div>';}
 }
@@ -308,12 +336,38 @@ function renderBook(){
   const max=ag.vagas||5,slots=genSlots(ag);
   const hdr='<div class="book-top">'+logo()+'<div class="book-top-info"><h1>'+ag.titulo+'</h1><p>'+ag.inicio+' – '+ag.fim+' · até '+max+' alunos por horário</p></div></div>';
   const aviso='<div class="book-notice"><div class="book-notice-icon">📝</div><div class="book-notice-text"><strong>Atenção</strong>O aluno poderá trazer redações da semana para a correção.</div></div>';
+  const tabs='<div class="tabs"><button class="tab '+(bp.tab==='agendar'?'active':'')+'" id="tab-agendar">📅 Fazer agendamento</button><button class="tab '+(bp.tab==='consultar'?'active':'')+'" id="tab-consultar">🔍 Consultar agendamento</button></div>';
 
   if(bp.done&&bp.lastBooking){const bk=bp.lastBooking;
-    return hdr+'<div class="book-body">'+aviso+'<div class="confirm-card"><div class="confirm-ico">✅</div><div class="confirm-t">Agendamento confirmado!</div><div class="confirm-highlight">'+bk.nome+'</div><div class="confirm-d">'+bk.data_fmt+'<br>'+ag.inicio+' – '+ag.fim+'<br>Turma: '+bk.turma+'</div></div></div>';}
+    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="confirm-card"><div class="confirm-ico">✅</div><div class="confirm-t">Agendamento confirmado!</div><div class="confirm-highlight">'+bk.nome+'</div><div class="confirm-d">'+bk.data_fmt+'<br>'+ag.inicio+' – '+ag.fim+'<br>Turma: '+bk.turma+'</div></div></div>';}
+
+  if(bp.tab==='consultar'){
+    let resultHtml='';
+    if(bp.consultaLoading){resultHtml='<div class="consulta-empty">Buscando...</div>';}
+    else if(bp.consultaResult!==null){
+      if(bp.consultaResult.length===0){
+        resultHtml='<div class="consulta-empty">Nenhum agendamento encontrado para este número.</div>';
+      }else{
+        resultHtml='<div class="consulta-result">'+bp.consultaResult.map(b=>{
+          return'<div class="consulta-item"><div class="consulta-item-title">'+b.nome+'</div><div class="consulta-item-meta">📅 '+b.data_fmt+'<br>🕐 '+b.horario+'<br>🏫 Turma: '+b.turma+'</div></div>';
+        }).join('')+'</div>';
+      }
+    }
+    return hdr+`<div class="book-body">${aviso}${tabs}
+      <div class="consulta-wrap">
+        <h2>Consultar meu agendamento</h2>
+        <p>Digite o número de WhatsApp que você usou ao fazer o agendamento.</p>
+        <div class="consulta-input-row">
+          <input type="tel" id="c-wa" value="${bp.consultaWA}" placeholder="(88) 99999-9999"/>
+          <button class="btn-consultar" id="btn-consultar">Buscar</button>
+        </div>
+        ${bp.consultaErr?'<p class="consulta-err">'+bp.consultaErr+'</p>':''}
+        ${resultHtml}
+      </div>
+    </div>`;}
 
   if(bp.step==='form'){const so=slots.find(s=>s.key===bp.slotKey);
-    return hdr+`<div class="book-body">${aviso}<div class="book-section">Seus dados</div><div class="form-card">
+    return hdr+`<div class="book-body">${aviso}${tabs}<div class="book-section">Seus dados</div><div class="form-card">
       <div class="slot-chosen-info">📅 ${fmtFull(so.date)} &nbsp;·&nbsp; ${ag.inicio} – ${ag.fim}</div>
       <div class="fg-b"><label>Nome completo</label><input type="text" id="b-nome" value="${bp.aluno.nome}" placeholder="Seu nome completo"/></div>
       <div class="fg-2">
@@ -336,7 +390,7 @@ function renderBook(){
         '<div class="vagas-txt">'+(full?'Lotado':(max-s.v)+' vaga'+(max-s.v!==1?'s':''))+'</div></div></div>';
     }).join('')+'</div>'
   ).join('');
-  return hdr+'<div class="book-body">'+aviso+'<div class="book-section">Escolha uma data</div>'+rows+(bp.slotKey?'<button class="btn-book" style="width:100%;margin-top:8px;" id="b-prox">Próximo →</button>':'')+'</div>';}
+  return hdr+'<div class="book-body">'+aviso+tabs+'<div class="book-section">Escolha uma data</div>'+rows+(bp.slotKey?'<button class="btn-book" style="width:100%;margin-top:8px;" id="b-prox">Próximo →</button>':'')+'</div>';}
 
 function bindLogin(){
   document.getElementById('li-btn')?.addEventListener('click',()=>{
@@ -356,59 +410,52 @@ function bindAdmin(){
   document.querySelectorAll('[data-nav]').forEach(el=>el.addEventListener('click',async()=>{
     S.nav=el.dataset.nav;S.notice=false;S.loading=true;render();
     const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];S.loading=false;render();}));
-
-  document.getElementById('btn-nova')?.addEventListener('click',()=>{
-    S.modal=true;S.editingId=null;S.form={titulo:'',semanas:4,dias:[],inicio:'07:00',fim:'08:30',vagas:5};render();});
-
+  document.getElementById('btn-nova')?.addEventListener('click',()=>{S.modal=true;S.editingId=null;S.form={titulo:'',semanas:4,dias:[],inicio:'07:00',fim:'08:30',vagas:5};render();});
   document.querySelectorAll('[data-edit]').forEach(el=>el.addEventListener('click',()=>{
     const ag=S.agendas.find(a=>a.id===el.dataset.edit);if(!ag)return;
     S.editingId=ag.id;S.modal=true;
-    S.form={titulo:ag.titulo,semanas:ag.semanas,dias:[...ag.dias],inicio:ag.inicio,fim:ag.fim,vagas:ag.vagas||5};
-    render();}));
-
+    S.form={titulo:ag.titulo,semanas:ag.semanas,dias:[...ag.dias],inicio:ag.inicio,fim:ag.fim,vagas:ag.vagas||5};render();}));
   document.getElementById('m-cancel')?.addEventListener('click',()=>{S.modal=null;S.editingId=null;render();});
   document.getElementById('mbg')?.addEventListener('click',ev=>{if(ev.target.id==='mbg'){S.modal=null;S.editingId=null;render();}});
-
   document.querySelectorAll('[data-dia]').forEach(el=>el.addEventListener('click',()=>{
     const i=parseInt(el.dataset.dia),idx=S.form.dias.indexOf(i);idx>=0?S.form.dias.splice(idx,1):S.form.dias.push(i);render();}));
-
   document.getElementById('m-save')?.addEventListener('click',async()=>{
-    const titulo=document.getElementById('m-titulo')?.value.trim();
-    const inicio=document.getElementById('m-ini')?.value;
-    const fim=document.getElementById('m-fim')?.value;
-    const semanas=parseInt(document.getElementById('m-sem')?.value);
-    const vagas=parseInt(document.getElementById('m-vagas')?.value)||5;
+    const titulo=document.getElementById('m-titulo')?.value.trim(),inicio=document.getElementById('m-ini')?.value,fim=document.getElementById('m-fim')?.value,semanas=parseInt(document.getElementById('m-sem')?.value),vagas=parseInt(document.getElementById('m-vagas')?.value)||5;
     if(!titulo||S.form.dias.length===0||!inicio||!fim){alert('Preencha o título, selecione ao menos um dia e defina os horários.');return;}
     if(inicio>=fim){alert('O início deve ser anterior ao término.');return;}
-    if(vagas<1){alert('Mínimo de 1 vaga por slot.');return;}
     const btn=document.getElementById('m-save');btn.textContent='Salvando...';btn.disabled=true;
     try{
-      if(S.editingId){
-        await updateAgenda(S.editingId,{titulo,semanas,dias:S.form.dias.sort(),inicio,fim,vagas});
-        S.notice='edit';
-      }else{
-        await insertAgenda({id:uid(),titulo,semanas,dias:S.form.dias.sort(),inicio,fim,vagas});
-        S.notice='new';
-      }
-      const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);
-      S.agendas=ag||[];S.allBookings=bk||[];S.modal=null;S.editingId=null;render();
+      if(S.editingId){await updateAgenda(S.editingId,{titulo,semanas,dias:S.form.dias.sort(),inicio,fim,vagas});S.notice='edit';}
+      else{await insertAgenda({id:uid(),titulo,semanas,dias:S.form.dias.sort(),inicio,fim,vagas});S.notice='new';}
+      const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];S.modal=null;S.editingId=null;render();
     }catch(e){alert('Erro ao salvar. Tente novamente.');btn.textContent=S.editingId?'Salvar alterações':'Criar agenda';btn.disabled=false;}});
-
   document.querySelectorAll('[data-copy]').forEach(el=>el.addEventListener('click',()=>{
     navigator.clipboard.writeText(el.dataset.copy).catch(()=>{});S.copied=el.dataset.cid;render();setTimeout(()=>{S.copied=null;render();},2000);}));
-
   document.querySelectorAll('[data-del]').forEach(el=>el.addEventListener('click',async()=>{
     if(!confirm('Excluir esta agenda e todos os agendamentos?'))return;
-    try{await deleteAgenda(el.dataset.del);const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];render();}
-    catch(e){alert('Erro ao excluir.');}}));
-
+    try{await deleteAgenda(el.dataset.del);const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];render();}catch(e){alert('Erro ao excluir.');}}));
   document.querySelectorAll('[data-delb]').forEach(el=>el.addEventListener('click',async()=>{
     if(!confirm('Remover este agendamento?'))return;
-    try{await deleteBooking(el.dataset.delb);const bk=await getAllBookings();S.allBookings=bk||[];render();}
-    catch(e){alert('Erro ao remover.');}}));}
+    try{await deleteBooking(el.dataset.delb);const bk=await getAllBookings();S.allBookings=bk||[];render();}catch(e){alert('Erro ao remover.');}}));}
 
 function bindBook(){
   const bp=S.bp;
+  document.getElementById('tab-agendar')?.addEventListener('click',()=>{bp.tab='agendar';app.innerHTML=renderBook();bindBook();});
+  document.getElementById('tab-consultar')?.addEventListener('click',()=>{bp.tab='consultar';app.innerHTML=renderBook();bindBook();});
+
+  document.getElementById('btn-consultar')?.addEventListener('click',async()=>{
+    const wa=document.getElementById('c-wa')?.value.trim();
+    if(!wa){bp.consultaErr='Digite seu número de WhatsApp.';app.innerHTML=renderBook();bindBook();return;}
+    bp.consultaWA=wa;bp.consultaErr='';bp.consultaLoading=true;bp.consultaResult=null;
+    app.innerHTML=renderBook();bindBook();
+    try{
+      const results=await getBookingsByWA(wa);
+      bp.consultaResult=results||[];bp.consultaLoading=false;
+      app.innerHTML=renderBook();bindBook();
+    }catch(e){bp.consultaErr='Erro ao buscar. Tente novamente.';bp.consultaLoading=false;app.innerHTML=renderBook();bindBook();}});
+
+  document.getElementById('c-wa')?.addEventListener('keydown',ev=>{if(ev.key==='Enter')document.getElementById('btn-consultar')?.click();});
+
   document.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>{
     const max=bp.agenda.vagas||5,slots=genSlots(bp.agenda),s=slots.find(x=>x.key===el.dataset.slot);
     if(!s)return;const v=bp.bookings.filter(b=>b.key===s.key).length;
