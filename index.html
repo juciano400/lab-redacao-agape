@@ -78,7 +78,6 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .fg-m input:focus,.fg-m select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,79,138,.1);}
 .fg-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .fg-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
-.fg-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
 .days-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
 .day-chip{padding:6px 14px;border:1px solid var(--border2);border-radius:20px;font-size:13px;cursor:pointer;color:var(--muted);background:#fff;font-weight:500;user-select:none;}
 .day-chip.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
@@ -90,13 +89,12 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .btn-confirm:disabled{background:#93b3d8;cursor:not-allowed;}
 .section-divider{border:none;border-top:1px solid var(--border);margin:18px 0 16px;}
 .section-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;}
-.blocos-preview{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:16px;}
+.blocos-preview{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--muted);margin-bottom:16px;}
 .blocos-preview span{color:var(--accent);font-weight:600;}
 .notice{background:var(--green-light);border:1px solid #a9efd1;border-radius:var(--r);padding:12px 16px;font-size:13px;color:#027a48;font-weight:500;margin-bottom:16px;}
 .empty{text-align:center;padding:52px 16px;color:var(--muted);font-size:14px;}
 .empty-ico{font-size:32px;margin-bottom:10px;}
 .loading{text-align:center;padding:40px;color:var(--muted);font-size:13px;}
-/* BOOKING */
 .book-top{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50;}
 .book-top img{height:48px;width:auto;}
 .book-top-info h1{font-size:15px;font-weight:600;}
@@ -112,10 +110,9 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .tab.active{background:var(--accent);color:#fff;font-weight:600;}
 .tab:hover:not(.active){background:var(--bg);}
 .book-section{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
-/* DAY GROUP with 2 blocks */
-.day-group{margin-bottom:20px;}
-.day-group-header{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-.day-group-header span{color:var(--muted);font-weight:400;font-size:12px;margin-left:6px;}
+.week-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.day-group{margin-bottom:16px;}
+.day-group-header{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;}
 .blocos-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .bloco-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;cursor:pointer;transition:border-color .12s;}
 .bloco-card:hover:not(.full){border-color:var(--accent);}
@@ -129,6 +126,14 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .vagas-fill.warn{background:var(--yellow);}
 .vagas-fill.danger{background:var(--red);}
 .vagas-txt{font-size:11px;color:var(--muted);white-space:nowrap;}
+/* legacy single slot row */
+.slot-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:6px;cursor:pointer;transition:border-color .12s;}
+.slot-row:hover:not(.full){border-color:var(--accent);}
+.slot-row.full{opacity:.5;cursor:not-allowed;}
+.slot-row.chosen{border:2px solid var(--accent);background:var(--accent-light);}
+.slot-date{font-size:14px;font-weight:600;}
+.slot-hour{font-size:12px;color:var(--muted);}
+.slot-right{display:flex;align-items:center;gap:8px;}
 .form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:16px;}
 .slot-chosen-info{background:var(--accent-light);border:1px solid #c3d9f5;border-radius:var(--r);padding:10px 14px;margin-bottom:18px;font-size:13px;font-weight:600;color:var(--accent);}
 .fg-b{margin-bottom:14px;}
@@ -148,7 +153,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .confirm-t{font-size:18px;font-weight:600;margin-bottom:6px;}
 .confirm-highlight{font-size:15px;font-weight:600;color:var(--accent);margin:10px 0 4px;}
 .confirm-d{font-size:14px;color:var(--muted);line-height:1.8;}
-.consulta-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:24px;margin-bottom:16px;}
+.consulta-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:24px;}
 .consulta-wrap h2{font-size:15px;font-weight:600;margin-bottom:6px;}
 .consulta-wrap p{font-size:13px;color:var(--muted);margin-bottom:18px;}
 .consulta-input-row{display:flex;gap:10px;}
@@ -161,7 +166,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .consulta-item-meta{font-size:12px;color:var(--muted);line-height:1.7;}
 .consulta-empty{text-align:center;padding:24px;color:var(--muted);font-size:13px;}
 .consulta-err{font-size:12px;color:var(--red);margin-top:8px;}
-@media(max-width:600px){.sidebar{display:none;}.content{padding:16px;}.fg-2,.fg-3,.fg-4,.book-form-actions,.blocos-row,.consulta-input-row{grid-template-columns:1fr;flex-direction:column;}}
+@media(max-width:600px){.sidebar{display:none;}.content{padding:16px;}.fg-2,.fg-3,.book-form-actions,.blocos-row{grid-template-columns:1fr;}.consulta-input-row{flex-direction:column;}}
 </style>
 </head>
 <body>
@@ -197,24 +202,32 @@ function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r;}
 function nextWD(from,idx){const d=new Date(from);const diff=(idx-d.getDay()+7)%7;d.setDate(d.getDate()+(diff===0?7:diff));return d;}
 function fmtDate(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit'});}
 function fmtFull(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});}
-// key: agendaId|dateStr|diaIdx|bloco (0=primeiro, 1=segundo)
-function sk(aid,ds,di,bl){return aid+'|'+ds+'|'+di+'|'+bl;}
+function fmtShort(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});}
 function link(id){return window.location.origin+window.location.pathname+'?lab='+id;}
 
-// generates day-entries, each with 2 bloco keys
+// Detect if agenda uses blocos (has 'meio') or legacy single slot
+function hasBlocos(ag){return !!(ag.meio);}
+
+// Legacy key: aid|dateStr|diaIdx
+function skLegacy(aid,ds,di){return aid+'|'+ds+'|'+di;}
+// Bloco key: aid|dateStr|diaIdx|0 or |1
+function skBloco(aid,ds,di,bl){return aid+'|'+ds+'|'+di+'|'+bl;}
+
 function genDays(ag){
   const days=[],today=new Date();today.setHours(0,0,0,0);
   ag.dias.forEach(di=>{
     let d=nextWD(today,di);
     for(let w=0;w<ag.semanas;w++){
       const ds=d.toISOString().slice(0,10);
-      days.push({
-        date:new Date(d),dateStr:ds,diaIdx:di,
-        key0:sk(ag.id,ds,di,0),
-        key1:sk(ag.id,ds,di,1),
-        hora0:ag.inicio+' – '+ag.meio,
-        hora1:ag.meio+' – '+ag.fim,
-      });
+      if(hasBlocos(ag)){
+        days.push({date:new Date(d),dateStr:ds,diaIdx:di,
+          key0:skBloco(ag.id,ds,di,0),key1:skBloco(ag.id,ds,di,1),
+          hora0:ag.inicio+' – '+ag.meio,hora1:ag.meio+' – '+ag.fim,isBlocos:true});
+      } else {
+        days.push({date:new Date(d),dateStr:ds,diaIdx:di,
+          key:skLegacy(ag.id,ds,di),
+          hora:ag.inicio+' – '+ag.fim,isBlocos:false});
+      }
       d=addDays(d,7);
     }
   });
@@ -275,17 +288,21 @@ function renderAgendas(){return`
   ${S.notice?'<div class="notice">✓ '+(S.notice==='edit'?'Agenda atualizada!':'Agenda criada! Copie o link e envie para os alunos.')+'</div>':''}
   ${S.agendas.length===0?'<div class="empty"><div class="empty-ico">📅</div>Nenhuma agenda criada ainda.</div>':
     S.agendas.map(ag=>{
-      const vpp=Math.floor((ag.vagas||6)/2),total2=genDays(ag).length*2*vpp;
+      const blocos=hasBlocos(ag),vpp=blocos?Math.floor((ag.vagas||6)/2):(ag.vagas||5);
+      const days=genDays(ag);
+      const totalSlots=blocos?days.length*2:days.length;
+      const totalVagas=totalSlots*vpp;
       const ocup=S.allBookings.filter(b=>b.agenda_id===ag.id).length;
-      const pct=total2>0?ocup/total2:0,bc=pct===0?'badge-open':pct>=1?'badge-full':'badge-partial',bt=pct===0?'Aberta':pct>=1?'Lotada':'Em andamento';
+      const pct=totalVagas>0?ocup/totalVagas:0,bc=pct===0?'badge-open':pct>=1?'badge-full':'badge-partial',bt=pct===0?'Aberta':pct>=1?'Lotada':'Em andamento';
       return`<div class="agenda-card">
         <div class="ac-top">
           <div>
             <div class="ac-title">${ag.titulo}</div>
-            <div class="ac-meta">${ag.dias.map(d=>WD[d]).join(', ')} · ${ag.semanas} semana(s) · ${vpp} vagas/bloco · ${ocup} de ${total2} vagas preenchidas</div>
+            <div class="ac-meta">${ag.dias.map(d=>WD[d]).join(', ')} · ${ag.semanas} semana(s) · ${vpp} vagas/slot · ${ocup} de ${totalVagas} preenchidas</div>
             <div class="ac-blocos">
-              <span class="bloco-tag">Bloco 1: ${ag.inicio} – ${ag.meio||'?'}</span>
-              <span class="bloco-tag">Bloco 2: ${ag.meio||'?'} – ${ag.fim}</span>
+              ${blocos
+                ?'<span class="bloco-tag">Bloco 1: '+ag.inicio+' – '+ag.meio+'</span><span class="bloco-tag">Bloco 2: '+ag.meio+' – '+ag.fim+'</span>'
+                :'<span class="bloco-tag">'+ag.inicio+' – '+ag.fim+'</span>'}
             </div>
           </div>
           <div class="ac-actions">
@@ -319,7 +336,8 @@ function renderModal(){
   const f=S.form,isEdit=!!S.editingId;
   const vpp=Math.floor((f.vagas||6)/2);
   const preview=f.inicio&&f.meio&&f.fim
-    ?'<div class="blocos-preview">Bloco 1: <span>'+f.inicio+' – '+f.meio+'</span> &nbsp;·&nbsp; Bloco 2: <span>'+f.meio+' – '+f.fim+'</span> &nbsp;·&nbsp; <span>'+vpp+' vagas cada</span></div>':''
+    ?'<div class="blocos-preview" id="blocos-preview">Bloco 1: <span>'+f.inicio+' – '+f.meio+'</span> &nbsp;·&nbsp; Bloco 2: <span>'+f.meio+' – '+f.fim+'</span> &nbsp;·&nbsp; <span>'+vpp+' vagas cada</span></div>'
+    :'<div class="blocos-preview" id="blocos-preview"></div>';
   return`<div class="modal-bg" id="mbg"><div class="modal">
     <div class="modal-title">${isEdit?'Editar agenda':'Nova agenda'}</div>
     <div class="modal-sub">Cada dia terá dois blocos de horário com vagas iguais.</div>
@@ -357,12 +375,32 @@ async function renderBookPage(aid){
   }catch(e){app.innerHTML='<div class="empty" style="padding:80px;"><div class="empty-ico">❌</div>Erro ao carregar.</div>';}
 }
 
+function getSlotInfo(ag,key,bookings){
+  // works for both legacy and bloco keys
+  const days=genDays(ag);
+  if(hasBlocos(ag)){
+    const day=days.find(d=>d.key0===key||d.key1===key);
+    if(!day)return null;
+    const isB1=day.key0===key;
+    const vpp=Math.floor((ag.vagas||6)/2);
+    const v=bookings.filter(b=>b.key===key).length;
+    return{day,horario:isB1?day.hora0:day.hora1,vpp,v,full:v>=vpp};
+  } else {
+    const day=days.find(d=>d.key===key);
+    if(!day)return null;
+    const vpp=ag.vagas||5;
+    const v=bookings.filter(b=>b.key===key).length;
+    return{day,horario:day.hora,vpp,v,full:v>=vpp};
+  }
+}
+
 function renderBook(){
   const bp=S.bp,ag=bp.agenda;
   if(!ag)return'<div class="empty" style="padding:80px;"><div class="empty-ico">❌</div>Link inválido.</div>';
-  const vpp=Math.floor((ag.vagas||6)/2);
+  const blocos=hasBlocos(ag);
+  const vpp=blocos?Math.floor((ag.vagas||6)/2):(ag.vagas||5);
   const days=genDays(ag);
-  const hdr='<div class="book-top">'+logo()+'<div class="book-top-info"><h1>'+ag.titulo+'</h1><p>'+vpp+' vagas por bloco de horário</p></div></div>';
+  const hdr='<div class="book-top">'+logo()+'<div class="book-top-info"><h1>'+ag.titulo+'</h1><p>'+vpp+' vagas por '+(blocos?'bloco':'horário')+'</p></div></div>';
   const aviso='<div class="book-notice"><div class="book-notice-icon">📝</div><div class="book-notice-text"><strong>Atenção</strong>O aluno poderá trazer redações da semana para a correção.</div></div>';
   const tabs='<div class="tabs"><button class="tab '+(bp.tab==='agendar'?'active':'')+'" id="tab-agendar">📅 Fazer agendamento</button><button class="tab '+(bp.tab==='consultar'?'active':'')+'" id="tab-consultar">🔍 Consultar agendamento</button></div>';
 
@@ -390,11 +428,9 @@ function renderBook(){
       </div></div>`;}
 
   if(bp.step==='form'){
-    const day=days.find(d=>d.key0===bp.slotKey||d.key1===bp.slotKey);
-    const isBloco1=day&&day.key0===bp.slotKey;
-    const horaEscolhida=day?(isBloco1?day.hora0:day.hora1):'';
+    const info=getSlotInfo(ag,bp.slotKey,bp.bookings);
     return hdr+`<div class="book-body">${aviso}${tabs}<div class="book-section">Seus dados</div><div class="form-card">
-      <div class="slot-chosen-info">📅 ${day?fmtFull(day.date):''} &nbsp;·&nbsp; ${horaEscolhida}</div>
+      <div class="slot-chosen-info">📅 ${info?fmtFull(info.day.date)+' &nbsp;·&nbsp; '+info.horario:''}</div>
       <div class="fg-b"><label>Nome completo</label><input type="text" id="b-nome" value="${bp.aluno.nome}" placeholder="Seu nome completo"/></div>
       <div class="fg-2">
         <div class="fg-b"><label>Turma / série</label><input type="text" id="b-turma" value="${bp.aluno.turma}" placeholder="Ex: 3º A"/></div>
@@ -404,9 +440,7 @@ function renderBook(){
       ${bp.err?'<p class="book-err">'+bp.err+'</p>':''}
     </div></div>`;}
 
-  function vc(key){return bp.bookings.filter(b=>b.key===key).length;}
-
-  // group by week
+  // group days by week
   const weeks={};
   days.forEach(d=>{
     const wk='Semana de '+d.date.toLocaleDateString('pt-BR',{day:'2-digit',month:'long'});
@@ -414,32 +448,39 @@ function renderBook(){
   });
 
   const rows=Object.entries(weeks).map(([wl,ds])=>
-    '<div style="margin-bottom:20px;"><div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid var(--border);">'+wl+'</div>'+
+    '<div style="margin-bottom:24px;"><div class="week-label">'+wl+'</div>'+
     ds.map(d=>{
-      const v0=vc(d.key0),v1=vc(d.key1),full0=v0>=vpp,full1=v1>=vpp;
-      const p0=Math.round((v0/vpp)*100),p1=Math.round((v1/vpp)*100);
-      const fc0=p0>=80?'danger':p0>=50?'warn':'',fc1=p1>=80?'danger':p1>=50?'warn':'';
-      const ch0=bp.slotKey===d.key0,ch1=bp.slotKey===d.key1;
-      return'<div class="day-group">'+
-        '<div class="day-group-header">'+fmtDate(d.date)+'</div>'+
-        '<div class="blocos-row">'+
-        '<div class="bloco-card '+(full0?'full':'')+(ch0&&!full0?' chosen':'')+'" data-slot="'+d.key0+'">'+
-          '<div class="bloco-label">Bloco 1</div>'+
-          '<div class="bloco-hora">'+d.hora0+'</div>'+
-          '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc0+'" style="width:'+p0+'%"></div></div>'+
-          '<div class="vagas-txt">'+(full0?'Lotado':(vpp-v0)+' vaga'+(vpp-v0!==1?'s':''))+'</div></div>'+
-        '</div>'+
-        '<div class="bloco-card '+(full1?'full':'')+(ch1&&!full1?' chosen':'')+'" data-slot="'+d.key1+'">'+
-          '<div class="bloco-label">Bloco 2</div>'+
-          '<div class="bloco-hora">'+d.hora1+'</div>'+
-          '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc1+'" style="width:'+p1+'%"></div></div>'+
-          '<div class="vagas-txt">'+(full1?'Lotado':(vpp-v1)+' vaga'+(vpp-v1!==1?'s':''))+'</div></div>'+
-        '</div>'+
-        '</div></div>';
+      if(d.isBlocos){
+        const v0=bp.bookings.filter(b=>b.key===d.key0).length;
+        const v1=bp.bookings.filter(b=>b.key===d.key1).length;
+        const full0=v0>=vpp,full1=v1>=vpp;
+        const p0=Math.round((v0/vpp)*100),p1=Math.round((v1/vpp)*100);
+        const fc0=p0>=80?'danger':p0>=50?'warn':'',fc1=p1>=80?'danger':p1>=50?'warn':'';
+        const ch0=bp.slotKey===d.key0,ch1=bp.slotKey===d.key1;
+        return'<div class="day-group"><div class="day-group-header">'+fmtDate(d.date)+'</div>'+
+          '<div class="blocos-row">'+
+          '<div class="bloco-card '+(full0?'full':'')+(ch0&&!full0?' chosen':'')+'" data-slot="'+d.key0+'">'+
+            '<div class="bloco-label">Bloco 1</div><div class="bloco-hora">'+d.hora0+'</div>'+
+            '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc0+'" style="width:'+p0+'%"></div></div>'+
+            '<div class="vagas-txt">'+(full0?'Lotado':(vpp-v0)+' vaga'+(vpp-v0!==1?'s':''))+'</div></div></div>'+
+          '<div class="bloco-card '+(full1?'full':'')+(ch1&&!full1?' chosen':'')+'" data-slot="'+d.key1+'">'+
+            '<div class="bloco-label">Bloco 2</div><div class="bloco-hora">'+d.hora1+'</div>'+
+            '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc1+'" style="width:'+p1+'%"></div></div>'+
+            '<div class="vagas-txt">'+(full1?'Lotado':(vpp-v1)+' vaga'+(vpp-v1!==1?'s':''))+'</div></div></div>'+
+          '</div></div>';
+      } else {
+        // legacy single slot
+        const maxV=ag.vagas||5,v=bp.bookings.filter(b=>b.key===d.key).length;
+        const full=v>=maxV,pct=Math.round((v/maxV)*100),fc=pct>=80?'danger':pct>=50?'warn':'',ch=bp.slotKey===d.key;
+        return'<div class="slot-row '+(full?'full':'')+(ch&&!full?' chosen':'')+'" data-slot="'+d.key+'">'+
+          '<div><div class="slot-date">'+fmtShort(d.date)+'</div><div class="slot-hour">'+d.hora+'</div></div>'+
+          '<div class="slot-right"><div class="vagas-bar"><div class="vagas-fill '+fc+'" style="width:'+pct+'%"></div></div>'+
+          '<div class="vagas-txt">'+(full?'Lotado':(maxV-v)+' vaga'+(maxV-v!==1?'s':''))+'</div></div></div>';
+      }
     }).join('')+'</div>'
   ).join('');
 
-  return hdr+'<div class="book-body">'+aviso+tabs+'<div class="book-section">Escolha uma data e bloco</div>'+rows+(bp.slotKey?'<button class="btn-book" style="width:100%;margin-top:4px;" id="b-prox">Próximo →</button>':'')+'</div>';}
+  return hdr+'<div class="book-body">'+aviso+tabs+'<div class="book-section">Escolha uma data'+(blocos?' e bloco':'')+'</div>'+rows+(bp.slotKey?'<button class="btn-book" style="width:100%;margin-top:4px;" id="b-prox">Próximo →</button>':'')+'</div>';}
 
 function bindLogin(){
   document.getElementById('li-btn')?.addEventListener('click',()=>{
@@ -461,7 +502,7 @@ function updatePreview(){
   const vagas=parseInt(document.getElementById('m-vagas')?.value)||6;
   const vpp=Math.floor(vagas/2);
   const p=document.getElementById('blocos-preview');
-  if(p&&ini&&meio&&fim){p.innerHTML='Bloco 1: <span>'+ini+' – '+meio+'</span> &nbsp;·&nbsp; Bloco 2: <span>'+meio+' – '+fim+'</span> &nbsp;·&nbsp; <span>'+vpp+' vagas cada</span>';}
+  if(p&&ini&&meio&&fim)p.innerHTML='Bloco 1: <span>'+ini+' – '+meio+'</span> &nbsp;·&nbsp; Bloco 2: <span>'+meio+' – '+fim+'</span> &nbsp;·&nbsp; <span>'+vpp+' vagas cada</span>';
 }
 
 function bindAdmin(){
@@ -516,26 +557,22 @@ function bindBook(){
     catch(e){bp.consultaErr='Erro ao buscar.';bp.consultaLoading=false;app.innerHTML=renderBook();bindBook();}});
   document.getElementById('c-wa')?.addEventListener('keydown',ev=>{if(ev.key==='Enter')document.getElementById('btn-consultar')?.click();});
   document.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>{
-    const ag=bp.agenda,vpp=Math.floor((ag.vagas||6)/2),days=genDays(ag);
-    const day=days.find(d=>d.key0===el.dataset.slot||d.key1===el.dataset.slot);
-    if(!day)return;
-    const key=el.dataset.slot,v=bp.bookings.filter(b=>b.key===key).length;
-    if(v>=vpp)return;bp.slotKey=key;app.innerHTML=renderBook();bindBook();}));
+    const ag=bp.agenda,key=el.dataset.slot;
+    const info=getSlotInfo(ag,key,bp.bookings);
+    if(!info||info.full)return;
+    bp.slotKey=key;app.innerHTML=renderBook();bindBook();}));
   document.getElementById('b-prox')?.addEventListener('click',()=>{bp.step='form';app.innerHTML=renderBook();bindBook();});
   document.getElementById('b-back')?.addEventListener('click',()=>{bp.step='choose';app.innerHTML=renderBook();bindBook();});
   document.getElementById('b-conf')?.addEventListener('click',async()=>{
     const nome=document.getElementById('b-nome')?.value.trim(),turma=document.getElementById('b-turma')?.value.trim(),whatsapp=document.getElementById('b-wa')?.value.trim();
     if(!nome||!turma||!whatsapp){bp.err='Preencha todos os campos.';app.innerHTML=renderBook();bindBook();return;}
-    const ag=bp.agenda,vpp=Math.floor((ag.vagas||6)/2),days=genDays(ag);
-    const day=days.find(d=>d.key0===bp.slotKey||d.key1===bp.slotKey);
-    const isB1=day&&day.key0===bp.slotKey;
-    const horario=day?(isB1?day.hora0:day.hora1):'';
+    const ag=bp.agenda;
     const fresh=await getBookings(ag.id);
-    const v=fresh.filter(b=>b.key===bp.slotKey).length;
-    if(v>=vpp){bp.err='Este bloco acabou de ser lotado. Volte e escolha outro.';bp.bookings=fresh;bp.step='choose';bp.slotKey=null;app.innerHTML=renderBook();bindBook();return;}
+    const info=getSlotInfo(ag,bp.slotKey,fresh);
+    if(!info||info.full){bp.err='Este slot acabou de ser lotado. Volte e escolha outro.';bp.bookings=fresh;bp.step='choose';bp.slotKey=null;app.innerHTML=renderBook();bindBook();return;}
     const btn=document.getElementById('b-conf');btn.disabled=true;btn.textContent='Confirmando...';
     try{
-      const bk={id:uid(),agenda_id:ag.id,key:bp.slotKey,date_str:day.dateStr,data_fmt:fmtFull(day.date),horario,nome,turma,whatsapp};
+      const bk={id:uid(),agenda_id:ag.id,key:bp.slotKey,date_str:info.day.dateStr,data_fmt:fmtFull(info.day.date),horario:info.horario,nome,turma,whatsapp};
       await insertBooking(bk);bp.lastBooking=bk;bp.done=true;app.innerHTML=renderBook();
     }catch(e){bp.err='Erro ao confirmar. Tente novamente.';btn.disabled=false;btn.textContent='Confirmar agendamento';app.innerHTML=renderBook();bindBook();}});}
 
