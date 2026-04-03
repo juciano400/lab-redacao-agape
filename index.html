@@ -10,176 +10,222 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:14px;}
 :root{--bg:#F7F8FA;--surface:#fff;--border:#E4E7EC;--border2:#D0D5DD;--text:#101828;--muted:#667085;--accent:#1A4F8A;--accent-light:#EBF2FC;--red:#E8294A;--red-light:#FEF0F3;--green:#12B76A;--green-light:#ECFDF3;--yellow:#F79009;--yellow-light:#FFFAEB;--r:8px;--r2:12px;}
-.login-bg{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:24px;}
-.login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:40px 36px;width:100%;max-width:380px;}
-.login-logo{text-align:center;margin-bottom:28px;}
-.login-logo img{max-width:240px;height:auto;}
+
+/* LOGIN */
+.login-bg{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px;}
+.login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:32px 24px;width:100%;max-width:380px;}
+.login-logo{text-align:center;margin-bottom:24px;}
+.login-logo img{max-width:200px;height:auto;}
 .fg{margin-bottom:14px;}
 .fg label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px;}
-.fg input{width:100%;padding:9px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:14px;color:var(--text);outline:none;background:#fff;font-family:'Inter',sans-serif;}
+.fg input{width:100%;padding:11px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:15px;color:var(--text);outline:none;background:#fff;font-family:'Inter',sans-serif;}
 .fg input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,79,138,.1);}
-.btn-primary{width:100%;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;}
+.btn-primary{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:var(--r);font-size:15px;font-weight:600;cursor:pointer;margin-top:4px;}
 .btn-primary:hover{background:#163f70;}
 .err-msg{font-size:12px;color:var(--red);text-align:center;margin-top:8px;}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);height:56px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-.topbar img{height:40px;width:auto;}
-.topbar-right{display:flex;align-items:center;gap:12px;}
-.topbar-user{font-size:13px;color:var(--muted);}
-.btn-out{background:none;border:1px solid var(--border2);color:var(--muted);font-size:13px;padding:6px 14px;border-radius:var(--r);cursor:pointer;}
-.btn-out:hover{background:var(--bg);}
-.main{display:flex;min-height:calc(100vh - 56px);}
-.sidebar{width:196px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:12px 0;position:sticky;top:56px;height:calc(100vh - 56px);}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 18px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .12s;}
+
+/* TOPBAR */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);height:52px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar img{height:34px;width:auto;}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.topbar-user{font-size:12px;color:var(--muted);display:none;}
+.btn-out{background:none;border:1px solid var(--border2);color:var(--muted);font-size:12px;padding:6px 12px;border-radius:var(--r);cursor:pointer;}
+
+/* BOTTOM NAV (mobile) */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);z-index:100;padding:0;}
+.bottom-nav-inner{display:flex;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px 8px;font-size:10px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;gap:3px;-webkit-tap-highlight-color:transparent;}
+.bn-item.active{color:var(--accent);}
+.bn-icon{font-size:20px;line-height:1;}
+
+/* SIDEBAR (desktop) */
+.sidebar{width:180px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:12px 0;position:sticky;top:52px;height:calc(100vh - 52px);}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .12s;}
 .nav-item:hover{color:var(--text);background:var(--bg);}
 .nav-item.active{color:var(--accent);background:var(--accent-light);font-weight:600;}
-.content{flex:1;padding:28px;max-width:960px;}
-.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;}
-.ph-title{font-size:18px;font-weight:600;}
-.ph-sub{font-size:13px;color:var(--muted);margin-top:2px;}
-.btn-act{background:var(--accent);color:#fff;border:none;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;}
+
+/* LAYOUT */
+.main{display:flex;min-height:calc(100vh - 52px);}
+.content{flex:1;padding:20px;max-width:960px;min-width:0;}
+
+/* PAGE HEADER */
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;}
+.ph-title{font-size:17px;font-weight:600;}
+.ph-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.btn-act{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
 .btn-act:hover{background:#163f70;}
+
 /* AGENDA CARD */
-.agenda-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:12px;}
-.ac-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;}
-.ac-title{font-size:15px;font-weight:600;}
-.ac-meta{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.7;}
-.ac-blocos{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
-.bloco-tag{background:var(--accent-light);color:var(--accent);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;}
-.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.agenda-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:16px;margin-bottom:12px;}
+.ac-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.ac-title{font-size:14px;font-weight:600;line-height:1.4;}
+.ac-meta{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6;}
+.ac-blocos{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+.bloco-tag{background:var(--accent-light);color:var(--accent);font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;white-space:nowrap;}
 .badge-open{background:var(--green-light);color:var(--green);}
 .badge-partial{background:var(--yellow-light);color:var(--yellow);}
 .badge-full{background:var(--red-light);color:var(--red);}
-.ac-actions{display:flex;gap:6px;flex-shrink:0;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
-.btn-sm{background:none;border:1px solid var(--border2);color:var(--muted);font-size:12px;padding:5px 11px;border-radius:6px;cursor:pointer;}
+.ac-actions{display:flex;gap:6px;align-items:center;flex-shrink:0;}
+.btn-sm{background:none;border:1px solid var(--border2);color:var(--muted);font-size:11px;padding:5px 10px;border-radius:6px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .btn-sm:hover{background:var(--bg);}
 .btn-sm-blue{color:var(--accent);border-color:#c3d9f5;}
 .btn-sm-blue:hover{background:var(--accent-light);}
 .btn-sm-danger{color:var(--red);border-color:#fcd4dc;}
 .btn-sm-danger:hover{background:var(--red-light);}
-.link-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:10px;}
-.link-url{font-size:11px;color:var(--muted);flex:1;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.btn-copy{background:var(--accent);color:#fff;border:none;font-size:11px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;flex-shrink:0;}
+
+/* LINK BOX */
+.link-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;display:flex;align-items:center;gap:8px;}
+.link-url{font-size:10px;color:var(--muted);flex:1;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.btn-copy{background:var(--accent);color:#fff;border:none;font-size:11px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
 .btn-copy:hover{background:#163f70;}
 .btn-copy.ok{background:var(--green);}
-/* SLOT MANAGER (admin) */
-.slot-manager{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;}
-.slot-manager-title{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
-.slot-manager-scroll{display:flex;flex-wrap:wrap;gap:8px;}
-.slot-pill{display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;}
+
+/* SLOT MANAGER */
+.slot-manager{margin-top:12px;border-top:1px solid var(--border);padding-top:12px;}
+.slot-manager-title{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.slot-manager-scroll{display:flex;flex-wrap:wrap;gap:6px;}
+.slot-pill{display:flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-size:11px;}
 .slot-pill.blocked{background:#fff5f5;border-color:#fcd4dc;}
 .slot-pill-label{color:var(--text);font-weight:500;}
 .slot-pill.blocked .slot-pill-label{color:var(--red);}
-.btn-lock{background:none;border:none;cursor:pointer;font-size:14px;line-height:1;padding:0;opacity:.7;}
-.btn-lock:hover{opacity:1;}
-/* TABLE */
+.btn-lock{background:none;border:none;cursor:pointer;font-size:15px;line-height:1;padding:2px;-webkit-tap-highlight-color:transparent;}
+
+/* AGENDAMENTOS TABLE → cards on mobile */
 .tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;}
 .dtbl{width:100%;border-collapse:collapse;font-size:13px;}
-.dtbl th{text-align:left;padding:10px 16px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);background:var(--bg);}
-.dtbl td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.dtbl th{text-align:left;padding:10px 14px;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);background:var(--bg);}
+.dtbl td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
 .dtbl tr:last-child td{border-bottom:none;}
-.dtbl tr:hover td{background:#fafafa;}
 .wa-link{color:var(--accent);text-decoration:none;font-weight:500;}
-.wa-link:hover{text-decoration:underline;}
+
+/* booking cards for mobile */
+.bk-cards{display:none;}
+.bk-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:10px;}
+.bk-card-name{font-size:14px;font-weight:600;margin-bottom:6px;}
+.bk-card-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:3px;}
+.bk-card-row span:last-child{color:var(--text);font-weight:500;}
+.bk-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+
 /* MODAL */
-.modal-bg{position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;z-index:200;}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:28px;width:92%;max-width:520px;max-height:90vh;overflow-y:auto;}
-.modal-title{font-size:17px;font-weight:600;margin-bottom:4px;}
-.modal-sub{font-size:13px;color:var(--muted);margin-bottom:22px;}
-.fg-m{margin-bottom:16px;}
+.modal-bg{position:fixed;inset:0;background:rgba(16,24,40,.5);display:flex;align-items:flex-end;justify-content:center;z-index:200;}
+.modal{background:var(--surface);border-radius:var(--r2) var(--r2) 0 0;padding:24px 20px;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;}
+.modal-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px;}
+.modal-title{font-size:16px;font-weight:600;margin-bottom:4px;}
+.modal-sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+.fg-m{margin-bottom:14px;}
 .fg-m label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px;}
-.fg-m input,.fg-m select{width:100%;padding:9px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:14px;color:var(--text);outline:none;background:#fff;font-family:'Inter',sans-serif;}
+.fg-m input,.fg-m select{width:100%;padding:11px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:15px;color:var(--text);outline:none;background:#fff;font-family:'Inter',sans-serif;}
 .fg-m input:focus,.fg-m select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,79,138,.1);}
-.fg-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.fg-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.fg-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fg-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
 .days-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
-.day-chip{padding:6px 14px;border:1px solid var(--border2);border-radius:20px;font-size:13px;cursor:pointer;color:var(--muted);background:#fff;font-weight:500;user-select:none;}
+.day-chip{padding:8px 12px;border:1px solid var(--border2);border-radius:20px;font-size:13px;cursor:pointer;color:var(--muted);background:#fff;font-weight:500;user-select:none;-webkit-tap-highlight-color:transparent;}
 .day-chip.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
-.modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;border-top:1px solid var(--border);padding-top:18px;}
-.btn-cancel{background:none;border:1px solid var(--border2);color:var(--muted);padding:9px 18px;border-radius:var(--r);font-size:14px;cursor:pointer;}
-.btn-cancel:hover{background:var(--bg);}
-.btn-confirm{background:var(--accent);color:#fff;border:none;padding:9px 20px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:16px 0 14px;}
+.section-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;}
+.blocos-preview{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;font-size:12px;color:var(--muted);margin-bottom:14px;}
+.blocos-preview span{color:var(--accent);font-weight:600;}
+.modal-footer{display:flex;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);}
+.btn-cancel{flex:1;background:var(--bg);border:1px solid var(--border2);color:var(--muted);padding:12px;border-radius:var(--r);font-size:14px;cursor:pointer;}
+.btn-confirm{flex:2;background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
 .btn-confirm:hover{background:#163f70;}
 .btn-confirm:disabled{background:#93b3d8;cursor:not-allowed;}
-.section-divider{border:none;border-top:1px solid var(--border);margin:18px 0 16px;}
-.section-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;}
-.blocos-preview{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--muted);margin-bottom:16px;}
-.blocos-preview span{color:var(--accent);font-weight:600;}
-.notice{background:var(--green-light);border:1px solid #a9efd1;border-radius:var(--r);padding:12px 16px;font-size:13px;color:#027a48;font-weight:500;margin-bottom:16px;}
-.empty{text-align:center;padding:52px 16px;color:var(--muted);font-size:14px;}
+
+.notice{background:var(--green-light);border:1px solid #a9efd1;border-radius:var(--r);padding:12px 14px;font-size:13px;color:#027a48;font-weight:500;margin-bottom:16px;}
+.empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:14px;}
 .empty-ico{font-size:32px;margin-bottom:10px;}
 .loading{text-align:center;padding:40px;color:var(--muted);font-size:13px;}
-/* BOOKING */
-.book-top{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50;}
-.book-top img{height:48px;width:auto;}
-.book-top-info h1{font-size:15px;font-weight:600;}
-.book-top-info p{font-size:12px;color:var(--muted);}
-.book-body{max-width:620px;margin:0 auto;padding:24px;}
-.book-notice{display:flex;align-items:flex-start;gap:12px;background:#FFF8E7;border:1px solid #F5C518;border-radius:var(--r);padding:14px 16px;margin-bottom:24px;}
-.book-notice-icon{font-size:20px;flex-shrink:0;}
-.book-notice-text{font-size:13px;color:#7A4F00;line-height:1.6;}
+
+/* BOOKING PAGE */
+.book-top{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;}
+.book-top img{height:40px;width:auto;}
+.book-top-info h1{font-size:14px;font-weight:600;}
+.book-top-info p{font-size:11px;color:var(--muted);}
+.book-body{max-width:620px;margin:0 auto;padding:16px;}
+.book-notice{display:flex;align-items:flex-start;gap:10px;background:#FFF8E7;border:1px solid #F5C518;border-radius:var(--r);padding:12px 14px;margin-bottom:20px;}
+.book-notice-icon{font-size:18px;flex-shrink:0;}
+.book-notice-text{font-size:12px;color:#7A4F00;line-height:1.6;}
 .book-notice-text strong{font-weight:600;display:block;margin-bottom:2px;}
-.tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:24px;}
-.tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;background:var(--surface);border:none;transition:all .12s;}
+.tabs{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px;}
+.tab{flex:1;padding:10px 6px;text-align:center;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;background:var(--surface);border:none;-webkit-tap-highlight-color:transparent;}
 .tab:first-child{border-right:1px solid var(--border);}
 .tab.active{background:var(--accent);color:#fff;font-weight:600;}
-.tab:hover:not(.active){background:var(--bg);}
-.book-section{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
-.week-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid var(--border);}
-.day-group{margin-bottom:16px;}
+.book-section{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.week-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.day-group{margin-bottom:14px;}
 .day-group-header{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;}
-.blocos-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.bloco-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;cursor:pointer;transition:border-color .12s;}
+.blocos-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.bloco-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .bloco-card:hover:not(.full){border-color:var(--accent);}
 .bloco-card.full{opacity:.5;cursor:not-allowed;}
 .bloco-card.chosen{border:2px solid var(--accent);background:var(--accent-light);}
-.bloco-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
-.bloco-hora{font-size:15px;font-weight:600;color:var(--text);}
-.bloco-vagas{margin-top:10px;display:flex;align-items:center;gap:8px;}
+.bloco-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.bloco-hora{font-size:14px;font-weight:600;}
+.bloco-vagas{margin-top:8px;display:flex;align-items:center;gap:6px;}
 .vagas-bar{flex:1;height:4px;background:#e4e7ec;border-radius:3px;overflow:hidden;}
 .vagas-fill{height:100%;background:var(--green);border-radius:3px;}
 .vagas-fill.warn{background:var(--yellow);}
 .vagas-fill.danger{background:var(--red);}
-.vagas-txt{font-size:11px;color:var(--muted);white-space:nowrap;}
-.slot-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:6px;cursor:pointer;transition:border-color .12s;}
+.vagas-txt{font-size:10px;color:var(--muted);white-space:nowrap;}
+.slot-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:6px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .slot-row:hover:not(.full){border-color:var(--accent);}
 .slot-row.full{opacity:.5;cursor:not-allowed;}
 .slot-row.chosen{border:2px solid var(--accent);background:var(--accent-light);}
 .slot-date{font-size:14px;font-weight:600;}
 .slot-hour{font-size:12px;color:var(--muted);}
-.slot-right{display:flex;align-items:center;gap:8px;}
-.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:16px;}
-.slot-chosen-info{background:var(--accent-light);border:1px solid #c3d9f5;border-radius:var(--r);padding:10px 14px;margin-bottom:18px;font-size:13px;font-weight:600;color:var(--accent);}
-.fg-b{margin-bottom:14px;}
-.fg-b label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px;}
-.fg-b input{width:100%;padding:9px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:14px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
+.slot-right{display:flex;align-items:center;gap:6px;}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:16px;margin-bottom:14px;}
+.slot-chosen-info{background:var(--accent-light);border:1px solid #c3d9f5;border-radius:var(--r);padding:10px 12px;margin-bottom:16px;font-size:12px;font-weight:600;color:var(--accent);}
+.fg-b{margin-bottom:12px;}
+.fg-b label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:4px;}
+.fg-b input{width:100%;padding:11px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:15px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
 .fg-b input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,79,138,.1);}
 .fg-b input::placeholder{color:#aab0bb;}
-.book-form-actions{display:grid;grid-template-columns:auto 1fr;gap:10px;margin-top:4px;}
-.btn-back{background:none;border:1px solid var(--border2);color:var(--muted);padding:10px 16px;border-radius:var(--r);font-size:14px;cursor:pointer;}
-.btn-back:hover{background:var(--bg);}
-.btn-book{background:var(--accent);color:#fff;border:none;padding:10px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
+.book-form-actions{display:grid;grid-template-columns:auto 1fr;gap:10px;margin-top:6px;}
+.btn-back{background:none;border:1px solid var(--border2);color:var(--muted);padding:12px 16px;border-radius:var(--r);font-size:14px;cursor:pointer;}
+.btn-book{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .btn-book:hover{background:#163f70;}
 .btn-book:disabled{background:#93b3d8;cursor:not-allowed;}
-.book-err{font-size:12px;color:var(--red);margin-top:8px;font-weight:500;}
-.confirm-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:40px;text-align:center;max-width:420px;margin:40px auto;}
-.confirm-ico{font-size:44px;margin-bottom:14px;}
+.book-err{font-size:12px;color:var(--red);margin-top:6px;font-weight:500;}
+.confirm-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:32px 20px;text-align:center;max-width:400px;margin:32px auto;}
+.confirm-ico{font-size:44px;margin-bottom:12px;}
 .confirm-t{font-size:18px;font-weight:600;margin-bottom:6px;}
-.confirm-highlight{font-size:15px;font-weight:600;color:var(--accent);margin:10px 0 4px;}
-.confirm-d{font-size:14px;color:var(--muted);line-height:1.8;}
-.consulta-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:24px;}
+.confirm-highlight{font-size:15px;font-weight:600;color:var(--accent);margin:8px 0 4px;}
+.confirm-d{font-size:13px;color:var(--muted);line-height:1.8;}
+.consulta-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:20px;}
 .consulta-wrap h2{font-size:15px;font-weight:600;margin-bottom:6px;}
-.consulta-wrap p{font-size:13px;color:var(--muted);margin-bottom:18px;}
-.consulta-input-row{display:flex;gap:10px;}
-.consulta-input-row input{flex:1;padding:9px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:14px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
-.consulta-input-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,79,138,.1);}
-.btn-consultar{background:var(--accent);color:#fff;border:none;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
-.btn-consultar:hover{background:#163f70;}
-.consulta-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-top:10px;}
+.consulta-wrap p{font-size:13px;color:var(--muted);margin-bottom:16px;}
+.consulta-input-row{display:flex;flex-direction:column;gap:8px;}
+.consulta-input-row input{width:100%;padding:11px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:15px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
+.consulta-input-row input:focus{border-color:var(--accent);}
+.btn-consultar{width:100%;background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
+.consulta-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-top:10px;}
 .consulta-item-title{font-size:14px;font-weight:600;margin-bottom:4px;}
 .consulta-item-meta{font-size:12px;color:var(--muted);line-height:1.7;}
-.consulta-empty{text-align:center;padding:24px;color:var(--muted);font-size:13px;}
-.consulta-err{font-size:12px;color:var(--red);margin-top:8px;}
-@media(max-width:600px){.sidebar{display:none;}.content{padding:16px;}.fg-2,.fg-3,.book-form-actions,.blocos-row{grid-template-columns:1fr;}.consulta-input-row{flex-direction:column;}}
+.consulta-empty{text-align:center;padding:20px;color:var(--muted);font-size:13px;}
+.consulta-err{font-size:12px;color:var(--red);margin-top:6px;}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .sidebar{display:none;}
+  .bottom-nav{display:block;}
+  .topbar-user{display:none;}
+  .content{padding:14px 12px 80px;}
+  .fg-3{grid-template-columns:1fr 1fr;}
+  .tbl-wrap{display:none;}
+  .bk-cards{display:block;}
+  .modal-bg{align-items:flex-end;}
+  .modal{border-radius:var(--r2) var(--r2) 0 0;padding-bottom:32px;}
+}
+@media(min-width:641px){
+  .topbar-user{display:block;}
+  .modal-bg{align-items:center;}
+  .modal{border-radius:var(--r2);max-width:520px;width:92%;padding:28px;}
+  .modal-handle{display:none;}
+  .consulta-input-row{flex-direction:row;}
+  .btn-consultar{width:auto;padding:11px 18px;white-space:nowrap;}
+}
 </style>
 </head>
 <body>
@@ -192,23 +238,19 @@ const EMAIL='juciano@agape.com',PASS='agape2024';
 const WD=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
 async function sb(path,method,body){
-  const r=await fetch(SB_URL+'/rest/v1/'+path,{
-    method:method||'GET',
-    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},
-    body:body?JSON.stringify(body):undefined
-  });
+  const r=await fetch(SB_URL+'/rest/v1/'+path,{method:method||'GET',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},body:body?JSON.stringify(body):undefined});
   if(!r.ok){const e=await r.text();throw new Error(e);}
   const t=await r.text();return t?JSON.parse(t):null;
 }
-async function getAgendas(){return sb('agendas?order=criado_em.asc');}
-async function insertAgenda(ag){return sb('agendas','POST',ag);}
-async function updateAgenda(id,data){return sb('agendas?id=eq.'+id,'PATCH',data);}
-async function deleteAgenda(id){return sb('agendas?id=eq.'+id,'DELETE');}
-async function getBookings(aid){return sb('bookings?agenda_id=eq.'+aid);}
-async function getAllBookings(){return sb('bookings?order=criado_em.asc');}
-async function getBookingsByWA(wa){const c=wa.replace(/\D/g,'');return sb('bookings?whatsapp=ilike.*'+encodeURIComponent(c)+'*&order=criado_em.desc');}
-async function insertBooking(bk){return sb('bookings','POST',bk);}
-async function deleteBooking(id){return sb('bookings?id=eq.'+id,'DELETE');}
+const getAgendas=()=>sb('agendas?order=criado_em.asc');
+const insertAgenda=ag=>sb('agendas','POST',ag);
+const updateAgenda=(id,data)=>sb('agendas?id=eq.'+id,'PATCH',data);
+const deleteAgenda=id=>sb('agendas?id=eq.'+id,'DELETE');
+const getBookings=aid=>sb('bookings?agenda_id=eq.'+aid);
+const getAllBookings=()=>sb('bookings?order=criado_em.asc');
+const getBookingsByWA=wa=>sb('bookings?whatsapp=ilike.*'+encodeURIComponent(wa.replace(/\D/g,''))+'*&order=criado_em.desc');
+const insertBooking=bk=>sb('bookings','POST',bk);
+const deleteBooking=id=>sb('bookings?id=eq.'+id,'DELETE');
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
 function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r;}
@@ -217,11 +259,11 @@ function fmtDate(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-d
 function fmtFull(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});}
 function fmtShort(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});}
 function link(id){return window.location.origin+window.location.pathname+'?lab='+id;}
-function hasBlocos(ag){return !!(ag.meio);}
-function skLegacy(aid,ds,di){return aid+'|'+ds+'|'+di;}
-function skBloco(aid,ds,di,bl){return aid+'|'+ds+'|'+di+'|'+bl;}
+function hasBlocos(ag){return!!(ag.meio);}
 function getBlocked(ag){return ag.blocked_slots||[];}
 function isBlocked(ag,key){return getBlocked(ag).includes(key);}
+function skL(aid,ds,di){return aid+'|'+ds+'|'+di;}
+function skB(aid,ds,di,bl){return aid+'|'+ds+'|'+di+'|'+bl;}
 
 function genDays(ag){
   const days=[],today=new Date();today.setHours(0,0,0,0);
@@ -229,31 +271,21 @@ function genDays(ag){
     let d=nextWD(today,di);
     for(let w=0;w<ag.semanas;w++){
       const ds=d.toISOString().slice(0,10);
-      if(hasBlocos(ag)){
-        days.push({date:new Date(d),dateStr:ds,diaIdx:di,
-          key0:skBloco(ag.id,ds,di,0),key1:skBloco(ag.id,ds,di,1),
-          hora0:ag.inicio+' – '+ag.meio,hora1:ag.meio+' – '+ag.fim,isBlocos:true});
-      } else {
-        days.push({date:new Date(d),dateStr:ds,diaIdx:di,
-          key:skLegacy(ag.id,ds,di),hora:ag.inicio+' – '+ag.fim,isBlocos:false});
-      }
+      days.push(hasBlocos(ag)
+        ?{date:new Date(d),dateStr:ds,diaIdx:di,key0:skB(ag.id,ds,di,0),key1:skB(ag.id,ds,di,1),hora0:ag.inicio+' – '+ag.meio,hora1:ag.meio+' – '+ag.fim,isBlocos:true}
+        :{date:new Date(d),dateStr:ds,diaIdx:di,key:skL(ag.id,ds,di),hora:ag.inicio+' – '+ag.fim,isBlocos:false});
       d=addDays(d,7);
     }
   });
   return days.sort((a,b)=>a.date-b.date);
 }
 
-let S={
-  view:'login',loginErr:'',nav:'agendas',
-  modal:null,editingId:null,
+let S={view:'login',loginErr:'',nav:'agendas',modal:null,editingId:null,
   form:{titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas:6},
-  agendas:[],allBookings:[],
-  copied:null,notice:false,loading:false,
-  bp:{agendaId:null,slotKey:null,step:'choose',tab:'agendar',
-      aluno:{nome:'',turma:'',whatsapp:''},err:'',done:false,lastBooking:null,
-      agenda:null,bookings:[],
-      consultaWA:'',consultaResult:null,consultaErr:'',consultaLoading:false}
-};
+  agendas:[],allBookings:[],copied:null,notice:false,loading:false,
+  bp:{agendaId:null,slotKey:null,step:'choose',tab:'agendar',aluno:{nome:'',turma:'',whatsapp:''},
+      err:'',done:false,lastBooking:null,agenda:null,bookings:[],
+      consultaWA:'',consultaResult:null,consultaErr:'',consultaLoading:false}};
 
 const app=document.getElementById('app');
 const logo=()=>'<img src="'+LOGO+'" alt="Lab Redação Ágape"/>';
@@ -266,7 +298,7 @@ function render(){
 }
 
 function renderLogin(){
-  return '<div class="login-bg"><div class="login-card"><div class="login-logo">'+logo()+'</div>'+
+  return'<div class="login-bg"><div class="login-card"><div class="login-logo">'+logo()+'</div>'+
     '<div class="fg"><label>E-mail</label><input type="email" id="li-e" placeholder="seu@email.com"/></div>'+
     '<div class="fg"><label>Senha</label><input type="password" id="li-p" placeholder="••••••••"/></div>'+
     '<button class="btn-primary" id="li-btn">Entrar</button>'+
@@ -275,133 +307,133 @@ function renderLogin(){
 }
 
 function renderAdmin(){
-  return '<div class="topbar"><div>'+logo()+'</div>'+
+  return'<div class="topbar"><div>'+logo()+'</div>'+
     '<div class="topbar-right"><span class="topbar-user">Prof. Juciano</span><button class="btn-out" id="btn-out">Sair</button></div></div>'+
     '<div class="main"><div class="sidebar">'+
     '<div class="nav-item '+(S.nav==='agendas'?'active':'')+'" data-nav="agendas">📅 &nbsp;Agendas</div>'+
     '<div class="nav-item '+(S.nav==='agendamentos'?'active':'')+'" data-nav="agendamentos">📋 &nbsp;Agendamentos</div>'+
     '</div><div class="content">'+
     (S.loading?'<div class="loading">Carregando...</div>':S.nav==='agendas'?renderAgendas():renderAgendamentos())+
-    '</div></div>'+(S.modal?renderModal():'');
+    '</div></div>'+
+    '<div class="bottom-nav"><div class="bottom-nav-inner">'+
+    '<button class="bn-item '+(S.nav==='agendas'?'active':'')+'" data-nav="agendas"><span class="bn-icon">📅</span>Agendas</button>'+
+    '<button class="bn-item '+(S.nav==='agendamentos'?'active':'')+'" data-nav="agendamentos"><span class="bn-icon">📋</span>Agendamentos</button>'+
+    '</div></div>'+
+    (S.modal?renderModal():'');
 }
 
 function renderAgendas(){
-  let html='<div class="ph"><div><div class="ph-title">Agendas</div><div class="ph-sub">Crie agendas e compartilhe links com os alunos</div></div>'+
-    '<button class="btn-act" id="btn-nova">+ Nova agenda</button></div>';
-  if(S.notice)html+='<div class="notice">✓ '+(S.notice==='edit'?'Agenda atualizada!':'Agenda criada! Copie o link e envie para os alunos.')+'</div>';
-  if(S.agendas.length===0){html+='<div class="empty"><div class="empty-ico">📅</div>Nenhuma agenda criada ainda.</div>';return html;}
-
+  let h='<div class="ph"><div><div class="ph-title">Agendas</div></div><button class="btn-act" id="btn-nova">+ Nova</button></div>';
+  if(S.notice)h+='<div class="notice">✓ '+(S.notice==='edit'?'Agenda atualizada!':'Agenda criada!')+'</div>';
+  if(!S.agendas.length)return h+'<div class="empty"><div class="empty-ico">📅</div>Nenhuma agenda criada ainda.</div>';
   S.agendas.forEach(ag=>{
     const blocos=hasBlocos(ag),vpp=blocos?Math.floor((ag.vagas||6)/2):(ag.vagas||5);
     const days=genDays(ag),blocked=getBlocked(ag);
-    const totalSlots=blocos?days.length*2:days.length;
-    const totalVagas=totalSlots*vpp;
+    const totalSlots=blocos?days.length*2:days.length,totalVagas=totalSlots*vpp;
     const ocup=S.allBookings.filter(b=>b.agenda_id===ag.id).length;
-    const pct=totalVagas>0?ocup/totalVagas:0;
-    const bc=pct===0?'badge-open':pct>=1?'badge-full':'badge-partial';
-    const bt=pct===0?'Aberta':pct>=1?'Lotada':'Em andamento';
-
-    // build slot pills for manager (show next 5 days only to keep it compact)
-    const nextDays=days.slice(0,8);
-    let pillsHtml='';
+    const pct=totalVagas>0?ocup/totalVagas:0,bc=pct===0?'badge-open':pct>=1?'badge-full':'badge-partial',bt=pct===0?'Aberta':pct>=1?'Lotada':'Em andamento';
+    const nextDays=days.slice(0,6);
+    let pills='';
     nextDays.forEach(d=>{
-      if(d.isBlocos){
-        [0,1].forEach(bl=>{
-          const k=bl===0?d.key0:d.key1;
-          const locked=blocked.includes(k);
-          const label=fmtShort(d.date)+' B'+(bl+1);
-          pillsHtml+='<div class="slot-pill'+(locked?' blocked':'')+'" data-agid="'+ag.id+'" data-key="'+k+'">'+
-            '<span class="slot-pill-label">'+(locked?'🔒 ':'')+label+'</span>'+
-            '<button class="btn-lock" data-agid="'+ag.id+'" data-key="'+k+'" title="'+(locked?'Desbloquear':'Bloquear')+'">'+
-            (locked?'🔓':'🔒')+'</button></div>';
-        });
-      } else {
-        const k=d.key,locked=blocked.includes(k);
-        const label=fmtShort(d.date);
-        pillsHtml+='<div class="slot-pill'+(locked?' blocked':'')+'" data-agid="'+ag.id+'" data-key="'+k+'">'+
-          '<span class="slot-pill-label">'+(locked?'🔒 ':'')+label+'</span>'+
-          '<button class="btn-lock" data-agid="'+ag.id+'" data-key="'+k+'" title="'+(locked?'Desbloquear':'Bloquear')+'">'+
-          (locked?'🔓':'🔒')+'</button></div>';
-      }
+      (d.isBlocos?[{k:d.key0,l:'B1'},{k:d.key1,l:'B2'}]:[{k:d.key,l:''}]).forEach(({k,l})=>{
+        const locked=blocked.includes(k),label=fmtShort(d.date)+(l?' '+l:'');
+        pills+='<div class="slot-pill'+(locked?' blocked':'')+'"><span class="slot-pill-label">'+(locked?'🔒 ':'')+label+'</span>'+
+          '<button class="btn-lock" data-agid="'+ag.id+'" data-key="'+k+'">'+(locked?'🔓':'🔒')+'</button></div>';
+      });
     });
-
-    html+='<div class="agenda-card">'+
-      '<div class="ac-top"><div>'+
+    h+='<div class="agenda-card">'+
+      '<div class="ac-header"><div>'+
         '<div class="ac-title">'+ag.titulo+'</div>'+
-        '<div class="ac-meta">'+ag.dias.map(d=>WD[d]).join(', ')+' · '+ag.semanas+' semana(s) · '+vpp+' vagas/slot · '+ocup+' de '+totalVagas+' preenchidas</div>'+
-        '<div class="ac-blocos">'+
-        (blocos?'<span class="bloco-tag">Bloco 1: '+ag.inicio+' – '+ag.meio+'</span><span class="bloco-tag">Bloco 2: '+ag.meio+' – '+ag.fim+'</span>':
-                '<span class="bloco-tag">'+ag.inicio+' – '+ag.fim+'</span>')+
-        '</div></div>'+
-        '<div class="ac-actions">'+
-          '<span class="badge '+bc+'">'+bt+'</span>'+
-          '<button class="btn-sm btn-sm-blue" data-edit="'+ag.id+'">Editar</button>'+
-          '<button class="btn-sm btn-sm-danger" data-del="'+ag.id+'">Excluir</button>'+
-        '</div></div>'+
+        '<div class="ac-meta">'+ag.dias.map(d=>WD[d]).join(', ')+' · '+ag.semanas+'sem · '+vpp+' vagas/slot · '+ocup+'/'+totalVagas+'</div>'+
+        '<div class="ac-blocos">'+(blocos?'<span class="bloco-tag">'+ag.inicio+'–'+ag.meio+'</span><span class="bloco-tag">'+ag.meio+'–'+ag.fim+'</span>':'<span class="bloco-tag">'+ag.inicio+'–'+ag.fim+'</span>')+'</div>'+
+      '</div><div class="ac-actions">'+
+        '<span class="badge '+bc+'">'+bt+'</span>'+
+        '<button class="btn-sm btn-sm-blue" data-edit="'+ag.id+'">Editar</button>'+
+        '<button class="btn-sm btn-sm-danger" data-del="'+ag.id+'">✕</button>'+
+      '</div></div>'+
       '<div class="link-box"><span class="link-url">'+link(ag.id)+'</span>'+
-        '<button class="btn-copy '+(S.copied===ag.id?'ok':'')+'" data-copy="'+link(ag.id)+'" data-cid="'+ag.id+'">'+(S.copied===ag.id?'✓ Copiado':'Copiar link')+'</button></div>'+
-      '<div class="slot-manager">'+
-        '<div class="slot-manager-title">🔒 Bloquear / desbloquear slots (próximas datas)</div>'+
-        '<div class="slot-manager-scroll">'+pillsHtml+'</div>'+
-      '</div>'+
-    '</div>';
+        '<button class="btn-copy '+(S.copied===ag.id?'ok':'')+'" data-copy="'+link(ag.id)+'" data-cid="'+ag.id+'">'+(S.copied===ag.id?'✓':'Copiar')+'</button></div>'+
+      '<div class="slot-manager"><div class="slot-manager-title">🔒 Bloquear slots</div>'+
+        '<div class="slot-manager-scroll">'+pills+'</div></div>'+
+      '</div>';
   });
-  return html;
+  return h;
 }
 
 function renderAgendamentos(){
   const bks=S.allBookings;
-  let html='<div class="ph"><div><div class="ph-title">Agendamentos</div><div class="ph-sub">'+bks.length+' agendamento'+(bks.length!==1?'s':'')+'</div></div></div>';
-  if(bks.length===0){html+='<div class="empty"><div class="empty-ico">📋</div>Nenhum agendamento ainda.</div>';return html;}
-  html+='<div class="tbl-wrap"><table class="dtbl"><thead><tr><th>Aluno</th><th>Turma</th><th>WhatsApp</th><th>Agenda</th><th>Data</th><th>Horário</th><th></th></tr></thead><tbody>';
-  bks.forEach(b=>{
-    const ag=S.agendas.find(a=>a.id===b.agenda_id);
-    html+='<tr><td><strong>'+b.nome+'</strong></td><td>'+b.turma+'</td>'+
-      '<td><a class="wa-link" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">📱 '+b.whatsapp+'</a></td>'+
+  let h='<div class="ph"><div><div class="ph-title">Agendamentos</div><div class="ph-sub">'+bks.length+' registrado'+(bks.length!==1?'s':'')+'</div></div></div>';
+  if(!bks.length)return h+'<div class="empty"><div class="empty-ico">📋</div>Nenhum agendamento ainda.</div>';
+  // desktop table
+  h+='<div class="tbl-wrap"><table class="dtbl"><thead><tr><th>Aluno</th><th>Turma</th><th>WhatsApp</th><th>Agenda</th><th>Data</th><th>Horário</th><th></th></tr></thead><tbody>';
+  bks.forEach(b=>{const ag=S.agendas.find(a=>a.id===b.agenda_id);
+    h+='<tr><td><strong>'+b.nome+'</strong></td><td>'+b.turma+'</td>'+
+      '<td><a class="wa-link" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">'+b.whatsapp+'</a></td>'+
       '<td>'+(ag?ag.titulo:'—')+'</td><td>'+b.data_fmt+'</td><td>'+b.horario+'</td>'+
-      '<td><button class="btn-sm btn-sm-danger" data-delb="'+b.id+'">×</button></td></tr>';
-  });
-  html+='</tbody></table></div>';
-  return html;
+      '<td><button class="btn-sm btn-sm-danger" data-delb="'+b.id+'">×</button></td></tr>';});
+  h+='</tbody></table></div>';
+  // mobile cards
+  h+='<div class="bk-cards">';
+  bks.forEach(b=>{const ag=S.agendas.find(a=>a.id===b.agenda_id);
+    h+='<div class="bk-card"><div class="bk-card-name">'+b.nome+'</div>'+
+      '<div class="bk-card-row"><span>Turma</span><span>'+b.turma+'</span></div>'+
+      '<div class="bk-card-row"><span>Data</span><span>'+b.data_fmt+'</span></div>'+
+      '<div class="bk-card-row"><span>Horário</span><span>'+b.horario+'</span></div>'+
+      (ag?'<div class="bk-card-row"><span>Agenda</span><span>'+ag.titulo+'</span></div>':'')+
+      '<div class="bk-card-footer">'+
+        '<a class="wa-link" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">📱 '+b.whatsapp+'</a>'+
+        '<button class="btn-sm btn-sm-danger" data-delb="'+b.id+'">Remover</button>'+
+      '</div></div>';});
+  h+='</div>';
+  return h;
 }
 
 function renderModal(){
   const f=S.form,isEdit=!!S.editingId,vpp=Math.floor((f.vagas||6)/2);
   const preview=f.inicio&&f.meio&&f.fim
-    ?'<div class="blocos-preview" id="blocos-preview">Bloco 1: <span>'+f.inicio+' – '+f.meio+'</span> &nbsp;·&nbsp; Bloco 2: <span>'+f.meio+' – '+f.fim+'</span> &nbsp;·&nbsp; <span>'+vpp+' vagas cada</span></div>'
-    :'<div class="blocos-preview" id="blocos-preview"></div>';
-  return '<div class="modal-bg" id="mbg"><div class="modal">'+
+    ?'<div class="blocos-preview" id="blocos-preview">Bloco 1: <span>'+f.inicio+' – '+f.meio+'</span> · Bloco 2: <span>'+f.meio+' – '+f.fim+'</span> · <span>'+vpp+' vagas cada</span></div>'
+    :'<div class="blocos-preview" id="blocos-preview"> </div>';
+  return'<div class="modal-bg" id="mbg"><div class="modal"><div class="modal-handle"></div>'+
     '<div class="modal-title">'+(isEdit?'Editar agenda':'Nova agenda')+'</div>'+
-    '<div class="modal-sub">Cada dia terá dois blocos de horário com vagas iguais.</div>'+
+    '<div class="modal-sub">Dois blocos de horário com vagas iguais por dia.</div>'+
     '<div class="fg-m"><label>Título</label><input type="text" id="m-titulo" value="'+f.titulo+'" placeholder="Ex: Correção — Turma 3º A"/></div>'+
     '<div class="fg-m"><label>Dias da semana</label><div class="days-wrap">'+
-    WD.map((d,i)=>'<div class="day-chip '+(f.dias.includes(i)?'sel':'')+'" data-dia="'+i+'">'+d+'</div>').join('')+
-    '</div></div><hr class="section-divider"/><div class="section-label">Blocos de horário</div>'+
+    WD.map((d,i)=>'<div class="day-chip '+(f.dias.includes(i)?'sel':'')+'" data-dia="'+i+'">'+d+'</div>').join('')+'</div></div>'+
+    '<hr class="section-divider"/><div class="section-label">Blocos de horário</div>'+
     '<div class="fg-3">'+
     '<div class="fg-m"><label>Início</label><input type="time" id="m-ini" value="'+f.inicio+'"/></div>'+
     '<div class="fg-m"><label>Divisão</label><input type="time" id="m-meio" value="'+f.meio+'"/></div>'+
     '<div class="fg-m"><label>Fim</label><input type="time" id="m-fim" value="'+f.fim+'"/></div>'+
     '</div>'+preview+
     '<div class="fg-2">'+
-    '<div class="fg-m"><label>Total de vagas por dia</label><input type="number" id="m-vagas" value="'+f.vagas+'" min="2" max="100" step="2"/></div>'+
-    '<div class="fg-m"><label>Número de semanas</label><select id="m-sem">'+
-    [1,2,3,4,5,6,8,10,12,16,20,24,36,48,52].map(n=>'<option value="'+n+'" '+(f.semanas===n?'selected':'')+'>'+n+' semana'+(n>1?'s':'')+'</option>').join('')+
+    '<div class="fg-m"><label>Total de vagas/dia</label><input type="number" id="m-vagas" value="'+f.vagas+'" min="2" max="100" step="2"/></div>'+
+    '<div class="fg-m"><label>Semanas</label><select id="m-sem">'+
+    [1,2,3,4,5,6,8,10,12,16,20,24,36,48,52].map(n=>'<option value="'+n+'" '+(f.semanas===n?'selected':'')+'>'+n+'</option>').join('')+
     '</select></div></div>'+
     '<div class="modal-footer"><button class="btn-cancel" id="m-cancel">Cancelar</button>'+
-    '<button class="btn-confirm" id="m-save">'+(isEdit?'Salvar alterações':'Criar agenda')+'</button></div>'+
+    '<button class="btn-confirm" id="m-save">'+(isEdit?'Salvar':'Criar agenda')+'</button></div>'+
     '</div></div>';
 }
 
 async function toggleBlock(agId,key){
   const ag=S.agendas.find(a=>a.id===agId);if(!ag)return;
-  const blocked=[...getBlocked(ag)];
-  const idx=blocked.indexOf(key);
+  const blocked=[...getBlocked(ag)],idx=blocked.indexOf(key);
   if(idx>=0)blocked.splice(idx,1);else blocked.push(key);
-  try{
-    await updateAgenda(agId,{blocked_slots:blocked});
-    ag.blocked_slots=blocked;
-    render();
-  }catch(e){alert('Erro ao atualizar bloqueio.');}
+  try{await updateAgenda(agId,{blocked_slots:blocked});ag.blocked_slots=blocked;render();}
+  catch(e){alert('Erro ao atualizar bloqueio.');}
+}
+
+function getSlotInfo(ag,key,bookings){
+  const days=genDays(ag);
+  if(hasBlocos(ag)){
+    const day=days.find(d=>d.key0===key||d.key1===key);if(!day)return null;
+    const isB1=day.key0===key,vpp=Math.floor((ag.vagas||6)/2),v=bookings.filter(b=>b.key===key).length;
+    const blocked=isBlocked(ag,key);
+    return{day,horario:isB1?day.hora0:day.hora1,vpp,v,full:v>=vpp||blocked,blocked};
+  }
+  const day=days.find(d=>d.key===key);if(!day)return null;
+  const vpp=ag.vagas||5,v=bookings.filter(b=>b.key===key).length,blocked=isBlocked(ag,key);
+  return{day,horario:day.hora,vpp,v,full:v>=vpp||blocked,blocked};
 }
 
 async function renderBookPage(aid){
@@ -414,21 +446,6 @@ async function renderBookPage(aid){
   }catch(e){app.innerHTML='<div class="empty" style="padding:80px;"><div class="empty-ico">❌</div>Erro ao carregar.</div>';}
 }
 
-function getSlotInfo(ag,key,bookings){
-  const days=genDays(ag);
-  if(hasBlocos(ag)){
-    const day=days.find(d=>d.key0===key||d.key1===key);if(!day)return null;
-    const isB1=day.key0===key,vpp=Math.floor((ag.vagas||6)/2),v=bookings.filter(b=>b.key===key).length;
-    const blocked=isBlocked(ag,key);
-    return{day,horario:isB1?day.hora0:day.hora1,vpp,v,full:v>=vpp||blocked,blocked};
-  } else {
-    const day=days.find(d=>d.key===key);if(!day)return null;
-    const vpp=ag.vagas||5,v=bookings.filter(b=>b.key===key).length;
-    const blocked=isBlocked(ag,key);
-    return{day,horario:day.hora,vpp,v,full:v>=vpp||blocked,blocked};
-  }
-}
-
 function renderBook(){
   const bp=S.bp,ag=bp.agenda;
   if(!ag)return'<div class="empty" style="padding:80px;"><div class="empty-ico">❌</div>Link inválido.</div>';
@@ -436,43 +453,38 @@ function renderBook(){
   const days=genDays(ag);
   const hdr='<div class="book-top">'+logo()+'<div class="book-top-info"><h1>'+ag.titulo+'</h1><p>'+vpp+' vagas por '+(blocos?'bloco':'horário')+'</p></div></div>';
   const aviso='<div class="book-notice"><div class="book-notice-icon">📝</div><div class="book-notice-text"><strong>Atenção</strong>O aluno poderá trazer redações da semana para a correção.</div></div>';
-  const tabs='<div class="tabs"><button class="tab '+(bp.tab==='agendar'?'active':'')+'" id="tab-agendar">📅 Fazer agendamento</button><button class="tab '+(bp.tab==='consultar'?'active':'')+'" id="tab-consultar">🔍 Consultar agendamento</button></div>';
+  const tabs='<div class="tabs"><button class="tab '+(bp.tab==='agendar'?'active':'')+'" id="tab-agendar">📅 Agendar</button><button class="tab '+(bp.tab==='consultar'?'active':'')+'" id="tab-consultar">🔍 Consultar</button></div>';
 
   if(bp.done&&bp.lastBooking){const bk=bp.lastBooking;
-    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="confirm-card"><div class="confirm-ico">✅</div><div class="confirm-t">Agendamento confirmado!</div><div class="confirm-highlight">'+bk.nome+'</div><div class="confirm-d">'+bk.data_fmt+'<br>'+bk.horario+'<br>Turma: '+bk.turma+'</div></div></div>';}
+    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="confirm-card"><div class="confirm-ico">✅</div><div class="confirm-t">Confirmado!</div><div class="confirm-highlight">'+bk.nome+'</div><div class="confirm-d">'+bk.data_fmt+'<br>'+bk.horario+'<br>Turma: '+bk.turma+'</div></div></div>';}
 
   if(bp.tab==='consultar'){
     let rHtml='';
     if(bp.consultaLoading)rHtml='<div class="consulta-empty">Buscando...</div>';
-    else if(bp.consultaResult!==null){
-      rHtml=bp.consultaResult.length===0?'<div class="consulta-empty">Nenhum agendamento encontrado.</div>':
-        bp.consultaResult.map(b=>'<div class="consulta-item"><div class="consulta-item-title">'+b.nome+'</div><div class="consulta-item-meta">📅 '+b.data_fmt+'<br>🕐 '+b.horario+'<br>🏫 Turma: '+b.turma+'</div></div>').join('');
-    }
-    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="consulta-wrap"><h2>Consultar meu agendamento</h2><p>Digite o número de WhatsApp usado no agendamento.</p>'+
-      '<div class="consulta-input-row"><input type="tel" id="c-wa" value="'+bp.consultaWA+'" placeholder="(88) 99999-9999"/><button class="btn-consultar" id="btn-consultar">Buscar</button></div>'+
+    else if(bp.consultaResult!==null)rHtml=bp.consultaResult.length===0
+      ?'<div class="consulta-empty">Nenhum agendamento encontrado.</div>'
+      :bp.consultaResult.map(b=>'<div class="consulta-item"><div class="consulta-item-title">'+b.nome+'</div><div class="consulta-item-meta">📅 '+b.data_fmt+'<br>🕐 '+b.horario+'<br>🏫 '+b.turma+'</div></div>').join('');
+    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="consulta-wrap"><h2>Consultar agendamento</h2><p>Digite o WhatsApp usado no agendamento.</p>'+
+      '<div class="consulta-input-row"><input type="tel" id="c-wa" value="'+bp.consultaWA+'" placeholder="(88) 99999-9999"/>'+
+      '<button class="btn-consultar" id="btn-consultar">Buscar</button></div>'+
       (bp.consultaErr?'<p class="consulta-err">'+bp.consultaErr+'</p>':'')+rHtml+'</div></div>';}
 
   if(bp.step==='form'){
     const info=getSlotInfo(ag,bp.slotKey,bp.bookings);
     return hdr+'<div class="book-body">'+aviso+tabs+'<div class="book-section">Seus dados</div><div class="form-card">'+
-      '<div class="slot-chosen-info">📅 '+(info?fmtFull(info.day.date)+' &nbsp;·&nbsp; '+info.horario:'')+'</div>'+
+      '<div class="slot-chosen-info">📅 '+(info?fmtFull(info.day.date)+' · '+info.horario:'')+'</div>'+
       '<div class="fg-b"><label>Nome completo</label><input type="text" id="b-nome" value="'+bp.aluno.nome+'" placeholder="Seu nome completo"/></div>'+
-      '<div class="fg-2"><div class="fg-b"><label>Turma / série</label><input type="text" id="b-turma" value="'+bp.aluno.turma+'" placeholder="Ex: 3º A"/></div>'+
+      '<div class="fg-2"><div class="fg-b"><label>Turma</label><input type="text" id="b-turma" value="'+bp.aluno.turma+'" placeholder="Ex: 3º A"/></div>'+
       '<div class="fg-b"><label>WhatsApp</label><input type="tel" id="b-wa" value="'+bp.aluno.whatsapp+'" placeholder="(88) 99999-9999"/></div></div>'+
       '<div class="book-form-actions"><button class="btn-back" id="b-back">← Voltar</button><button class="btn-book" id="b-conf">Confirmar agendamento</button></div>'+
       (bp.err?'<p class="book-err">'+bp.err+'</p>':'')+
       '</div></div>';}
 
-  // group by week
   const weeks={};
-  days.forEach(d=>{
-    const wk='Semana de '+d.date.toLocaleDateString('pt-BR',{day:'2-digit',month:'long'});
-    if(!weeks[wk])weeks[wk]=[];weeks[wk].push(d);
-  });
-
+  days.forEach(d=>{const wk='Semana de '+d.date.toLocaleDateString('pt-BR',{day:'2-digit',month:'long'});if(!weeks[wk])weeks[wk]=[];weeks[wk].push(d);});
   let rows='';
   Object.entries(weeks).forEach(([wl,ds])=>{
-    rows+='<div style="margin-bottom:24px;"><div class="week-label">'+wl+'</div>';
+    rows+='<div style="margin-bottom:20px;"><div class="week-label">'+wl+'</div>';
     ds.forEach(d=>{
       if(d.isBlocos){
         const v0=bp.bookings.filter(b=>b.key===d.key0).length,v1=bp.bookings.filter(b=>b.key===d.key1).length;
@@ -480,22 +492,21 @@ function renderBook(){
         const full0=v0>=vpp||bl0,full1=v1>=vpp||bl1;
         const p0=bl0?100:Math.round((v0/vpp)*100),p1=bl1?100:Math.round((v1/vpp)*100);
         const fc0=p0>=80?'danger':p0>=50?'warn':'',fc1=p1>=80?'danger':p1>=50?'warn':'';
-        const ch0=bp.slotKey===d.key0,ch1=bp.slotKey===d.key1;
         rows+='<div class="day-group"><div class="day-group-header">'+fmtDate(d.date)+'</div><div class="blocos-row">'+
-          '<div class="bloco-card '+(full0?'full':'')+(ch0&&!full0?' chosen':'')+'" data-slot="'+d.key0+'">'+
-            '<div class="bloco-label">Bloco 1</div><div class="bloco-hora">'+d.hora0+'</div>'+
-            '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc0+'" style="width:'+p0+'%"></div></div>'+
-            '<div class="vagas-txt">'+(full0?(bl0?'🔒 Fechado':'Lotado'):(vpp-v0)+' vaga'+(vpp-v0!==1?'s':''))+'</div></div></div>'+
-          '<div class="bloco-card '+(full1?'full':'')+(ch1&&!full1?' chosen':'')+'" data-slot="'+d.key1+'">'+
-            '<div class="bloco-label">Bloco 2</div><div class="bloco-hora">'+d.hora1+'</div>'+
-            '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc1+'" style="width:'+p1+'%"></div></div>'+
-            '<div class="vagas-txt">'+(full1?(bl1?'🔒 Fechado':'Lotado'):(vpp-v1)+' vaga'+(vpp-v1!==1?'s':''))+'</div></div></div>'+
+          '<div class="bloco-card '+(full0?'full':'')+(bp.slotKey===d.key0&&!full0?' chosen':'')+'" data-slot="'+d.key0+'">'+
+          '<div class="bloco-label">Bloco 1</div><div class="bloco-hora">'+d.hora0+'</div>'+
+          '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc0+'" style="width:'+p0+'%"></div></div>'+
+          '<div class="vagas-txt">'+(full0?(bl0?'🔒 Fechado':'Lotado'):(vpp-v0)+' vaga'+(vpp-v0!==1?'s':''))+'</div></div></div>'+
+          '<div class="bloco-card '+(full1?'full':'')+(bp.slotKey===d.key1&&!full1?' chosen':'')+'" data-slot="'+d.key1+'">'+
+          '<div class="bloco-label">Bloco 2</div><div class="bloco-hora">'+d.hora1+'</div>'+
+          '<div class="bloco-vagas"><div class="vagas-bar"><div class="vagas-fill '+fc1+'" style="width:'+p1+'%"></div></div>'+
+          '<div class="vagas-txt">'+(full1?(bl1?'🔒 Fechado':'Lotado'):(vpp-v1)+' vaga'+(vpp-v1!==1?'s':''))+'</div></div></div>'+
           '</div></div>';
       } else {
         const maxV=ag.vagas||5,v=bp.bookings.filter(b=>b.key===d.key).length;
         const blocked=isBlocked(ag,d.key),full=v>=maxV||blocked;
-        const pct=blocked?100:Math.round((v/maxV)*100),fc=pct>=80?'danger':pct>=50?'warn':'',ch=bp.slotKey===d.key;
-        rows+='<div class="slot-row '+(full?'full':'')+(ch&&!full?' chosen':'')+'" data-slot="'+d.key+'">'+
+        const pct=blocked?100:Math.round((v/maxV)*100),fc=pct>=80?'danger':pct>=50?'warn':'';
+        rows+='<div class="slot-row '+(full?'full':'')+(bp.slotKey===d.key&&!full?' chosen':'')+'" data-slot="'+d.key+'">'+
           '<div><div class="slot-date">'+fmtShort(d.date)+'</div><div class="slot-hour">'+d.hora+'</div></div>'+
           '<div class="slot-right"><div class="vagas-bar"><div class="vagas-fill '+fc+'" style="width:'+pct+'%"></div></div>'+
           '<div class="vagas-txt">'+(full?(blocked?'🔒 Fechado':'Lotado'):(maxV-v)+' vaga'+(maxV-v!==1?'s':''))+'</div></div></div>';
@@ -503,27 +514,27 @@ function renderBook(){
     });
     rows+='</div>';
   });
-
-  return hdr+'<div class="book-body">'+aviso+tabs+'<div class="book-section">Escolha uma data'+(blocos?' e bloco':'')+'</div>'+rows+(bp.slotKey?'<button class="btn-book" style="width:100%;margin-top:4px;" id="b-prox">Próximo →</button>':'')+'</div>';}
+  return hdr+'<div class="book-body">'+aviso+tabs+'<div class="book-section">Escolha uma data'+(blocos?' e bloco':'')+'</div>'+rows+(bp.slotKey?'<button class="btn-book" style="width:100%;margin-top:4px;" id="b-prox">Próximo →</button>':'')+'</div>';
+}
 
 function bindLogin(){
   document.getElementById('li-btn')?.addEventListener('click',()=>{
     if(document.getElementById('li-e').value===EMAIL&&document.getElementById('li-p').value===PASS){S.view='admin';S.loginErr='';loadAdmin();}
     else{S.loginErr='E-mail ou senha incorretos.';render();}});
-  document.getElementById('li-p')?.addEventListener('keydown',ev=>{if(ev.key==='Enter')document.getElementById('li-btn')?.click();});}
+  document.getElementById('li-p')?.addEventListener('keydown',ev=>{if(ev.key==='Enter')document.getElementById('li-btn')?.click();});
+}
 
 async function loadAdmin(){
   S.loading=true;render();
-  try{const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];}
-  catch(e){S.agendas=[];S.allBookings=[];}
+  try{const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];}catch(e){S.agendas=[];S.allBookings=[];}
   S.loading=false;render();
 }
 
 function updatePreview(){
   const ini=document.getElementById('m-ini')?.value||'',meio=document.getElementById('m-meio')?.value||'',fim=document.getElementById('m-fim')?.value||'';
-  const vagas=parseInt(document.getElementById('m-vagas')?.value)||6,vpp=Math.floor(vagas/2);
+  const vpp=Math.floor((parseInt(document.getElementById('m-vagas')?.value)||6)/2);
   const p=document.getElementById('blocos-preview');
-  if(p&&ini&&meio&&fim)p.innerHTML='Bloco 1: <span>'+ini+' – '+meio+'</span> &nbsp;·&nbsp; Bloco 2: <span>'+meio+' – '+fim+'</span> &nbsp;·&nbsp; <span>'+vpp+' vagas cada</span>';
+  if(p&&ini&&meio&&fim)p.innerHTML='Bloco 1: <span>'+ini+' – '+meio+'</span> · Bloco 2: <span>'+meio+' – '+fim+'</span> · <span>'+vpp+' vagas cada</span>';
 }
 
 function bindAdmin(){
@@ -543,28 +554,25 @@ function bindAdmin(){
   ['m-ini','m-meio','m-fim','m-vagas'].forEach(id=>document.getElementById(id)?.addEventListener('input',updatePreview));
   document.getElementById('m-save')?.addEventListener('click',async()=>{
     const titulo=document.getElementById('m-titulo')?.value.trim(),inicio=document.getElementById('m-ini')?.value,meio=document.getElementById('m-meio')?.value,fim=document.getElementById('m-fim')?.value,semanas=parseInt(document.getElementById('m-sem')?.value),vagas=parseInt(document.getElementById('m-vagas')?.value)||6;
-    if(!titulo||S.form.dias.length===0||!inicio||!meio||!fim){alert('Preencha o título, selecione ao menos um dia e defina os três horários.');return;}
-    if(inicio>=meio||meio>=fim){alert('Os horários devem ser em ordem crescente: Início < Divisão < Fim.');return;}
+    if(!titulo||!S.form.dias.length||!inicio||!meio||!fim){alert('Preencha o título, selecione ao menos um dia e defina os três horários.');return;}
+    if(inicio>=meio||meio>=fim){alert('Horários devem ser em ordem crescente.');return;}
     const btn=document.getElementById('m-save');btn.textContent='Salvando...';btn.disabled=true;
     try{
       const data={titulo,semanas,dias:S.form.dias.sort(),inicio,meio,fim,vagas};
       if(S.editingId){await updateAgenda(S.editingId,data);S.notice='edit';}
       else{await insertAgenda({id:uid(),...data});S.notice='new';}
       const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];S.modal=null;S.editingId=null;render();
-    }catch(e){alert('Erro ao salvar. Tente novamente.');btn.textContent=S.editingId?'Salvar alterações':'Criar agenda';btn.disabled=false;}});
+    }catch(e){alert('Erro ao salvar.');btn.textContent=S.editingId?'Salvar':'Criar agenda';btn.disabled=false;}});
   document.querySelectorAll('[data-copy]').forEach(el=>el.addEventListener('click',()=>{
     navigator.clipboard.writeText(el.dataset.copy).catch(()=>{});S.copied=el.dataset.cid;render();setTimeout(()=>{S.copied=null;render();},2000);}));
   document.querySelectorAll('[data-del]').forEach(el=>el.addEventListener('click',async()=>{
-    if(!confirm('Excluir esta agenda e todos os agendamentos?'))return;
+    if(!confirm('Excluir esta agenda?'))return;
     try{await deleteAgenda(el.dataset.del);const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];render();}catch(e){alert('Erro ao excluir.');}}));
   document.querySelectorAll('[data-delb]').forEach(el=>el.addEventListener('click',async()=>{
     if(!confirm('Remover este agendamento?'))return;
     try{await deleteBooking(el.dataset.delb);const bk=await getAllBookings();S.allBookings=bk||[];render();}catch(e){alert('Erro ao remover.');}}));
-  // lock/unlock buttons
-  document.querySelectorAll('.btn-lock').forEach(el=>el.addEventListener('click',async(e)=>{
-    e.stopPropagation();
-    await toggleBlock(el.dataset.agid,el.dataset.key);
-  }));
+  document.querySelectorAll('.btn-lock').forEach(el=>el.addEventListener('click',async e=>{
+    e.stopPropagation();await toggleBlock(el.dataset.agid,el.dataset.key);}));
 }
 
 function bindBook(){
@@ -580,8 +588,7 @@ function bindBook(){
   document.getElementById('c-wa')?.addEventListener('keydown',ev=>{if(ev.key==='Enter')document.getElementById('btn-consultar')?.click();});
   document.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>{
     const info=getSlotInfo(bp.agenda,el.dataset.slot,bp.bookings);
-    if(!info||info.full)return;
-    bp.slotKey=el.dataset.slot;app.innerHTML=renderBook();bindBook();}));
+    if(!info||info.full)return;bp.slotKey=el.dataset.slot;app.innerHTML=renderBook();bindBook();}));
   document.getElementById('b-prox')?.addEventListener('click',()=>{bp.step='form';app.innerHTML=renderBook();bindBook();});
   document.getElementById('b-back')?.addEventListener('click',()=>{bp.step='choose';app.innerHTML=renderBook();bindBook();});
   document.getElementById('b-conf')?.addEventListener('click',async()=>{
@@ -589,12 +596,12 @@ function bindBook(){
     if(!nome||!turma||!whatsapp){bp.err='Preencha todos os campos.';app.innerHTML=renderBook();bindBook();return;}
     const fresh=await getBookings(bp.agenda.id);
     const info=getSlotInfo(bp.agenda,bp.slotKey,fresh);
-    if(!info||info.full){bp.err='Este slot não está mais disponível. Volte e escolha outro.';bp.bookings=fresh;bp.step='choose';bp.slotKey=null;app.innerHTML=renderBook();bindBook();return;}
+    if(!info||info.full){bp.err='Slot não disponível. Escolha outro.';bp.bookings=fresh;bp.step='choose';bp.slotKey=null;app.innerHTML=renderBook();bindBook();return;}
     const btn=document.getElementById('b-conf');btn.disabled=true;btn.textContent='Confirmando...';
     try{
       const bk={id:uid(),agenda_id:bp.agenda.id,key:bp.slotKey,date_str:info.day.dateStr,data_fmt:fmtFull(info.day.date),horario:info.horario,nome,turma,whatsapp};
       await insertBooking(bk);bp.lastBooking=bk;bp.done=true;app.innerHTML=renderBook();
-    }catch(e){bp.err='Erro ao confirmar. Tente novamente.';btn.disabled=false;btn.textContent='Confirmar agendamento';app.innerHTML=renderBook();bindBook();}});
+    }catch(e){bp.err='Erro ao confirmar.';btn.disabled=false;btn.textContent='Confirmar agendamento';app.innerHTML=renderBook();bindBook();}});
 }
 
 render();
