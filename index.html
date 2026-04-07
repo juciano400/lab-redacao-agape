@@ -10,8 +10,6 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:14px;}
 :root{--bg:#F7F8FA;--surface:#fff;--border:#E4E7EC;--border2:#D0D5DD;--text:#101828;--muted:#667085;--accent:#1A4F8A;--accent-light:#EBF2FC;--red:#E8294A;--red-light:#FEF0F3;--green:#12B76A;--green-light:#ECFDF3;--yellow:#F79009;--yellow-light:#FFFAEB;--r:8px;--r2:12px;}
-
-/* LOGIN */
 .login-bg{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px;}
 .login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:32px 24px;width:100%;max-width:380px;}
 .login-logo{text-align:center;margin-bottom:24px;}
@@ -23,39 +21,27 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .btn-primary{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:var(--r);font-size:15px;font-weight:600;cursor:pointer;margin-top:4px;}
 .btn-primary:hover{background:#163f70;}
 .err-msg{font-size:12px;color:var(--red);text-align:center;margin-top:8px;}
-
-/* TOPBAR */
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);height:52px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .topbar img{height:34px;width:auto;}
 .topbar-right{display:flex;align-items:center;gap:8px;}
-.topbar-user{font-size:12px;color:var(--muted);display:none;}
+.topbar-user{font-size:12px;color:var(--muted);}
 .btn-out{background:none;border:1px solid var(--border2);color:var(--muted);font-size:12px;padding:6px 12px;border-radius:var(--r);cursor:pointer;}
-
-/* BOTTOM NAV (mobile) */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);z-index:100;padding:0;}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);z-index:100;}
 .bottom-nav-inner{display:flex;}
 .bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px 8px;font-size:10px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;gap:3px;-webkit-tap-highlight-color:transparent;}
 .bn-item.active{color:var(--accent);}
 .bn-icon{font-size:20px;line-height:1;}
-
-/* SIDEBAR (desktop) */
 .sidebar{width:180px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:12px 0;position:sticky;top:52px;height:calc(100vh - 52px);}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .12s;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;}
 .nav-item:hover{color:var(--text);background:var(--bg);}
 .nav-item.active{color:var(--accent);background:var(--accent-light);font-weight:600;}
-
-/* LAYOUT */
 .main{display:flex;min-height:calc(100vh - 52px);}
 .content{flex:1;padding:20px;max-width:960px;min-width:0;}
-
-/* PAGE HEADER */
 .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;}
 .ph-title{font-size:17px;font-weight:600;}
 .ph-sub{font-size:12px;color:var(--muted);margin-top:2px;}
-.btn-act{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+.btn-act{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
 .btn-act:hover{background:#163f70;}
-
-/* AGENDA CARD */
 .agenda-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:16px;margin-bottom:12px;}
 .ac-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;}
 .ac-title{font-size:14px;font-weight:600;line-height:1.4;}
@@ -67,21 +53,17 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .badge-partial{background:var(--yellow-light);color:var(--yellow);}
 .badge-full{background:var(--red-light);color:var(--red);}
 .ac-actions{display:flex;gap:6px;align-items:center;flex-shrink:0;}
-.btn-sm{background:none;border:1px solid var(--border2);color:var(--muted);font-size:11px;padding:5px 10px;border-radius:6px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.btn-sm{background:none;border:1px solid var(--border2);color:var(--muted);font-size:11px;padding:5px 10px;border-radius:6px;cursor:pointer;}
 .btn-sm:hover{background:var(--bg);}
 .btn-sm-blue{color:var(--accent);border-color:#c3d9f5;}
 .btn-sm-blue:hover{background:var(--accent-light);}
 .btn-sm-danger{color:var(--red);border-color:#fcd4dc;}
 .btn-sm-danger:hover{background:var(--red-light);}
-
-/* LINK BOX */
 .link-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;display:flex;align-items:center;gap:8px;}
 .link-url{font-size:10px;color:var(--muted);flex:1;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.btn-copy{background:var(--accent);color:#fff;border:none;font-size:11px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
+.btn-copy{background:var(--accent);color:#fff;border:none;font-size:11px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;flex-shrink:0;}
 .btn-copy:hover{background:#163f70;}
 .btn-copy.ok{background:var(--green);}
-
-/* SLOT MANAGER */
 .slot-manager{margin-top:12px;border-top:1px solid var(--border);padding-top:12px;}
 .slot-manager-title{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
 .slot-manager-scroll{display:flex;flex-wrap:wrap;gap:6px;}
@@ -89,23 +71,46 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .slot-pill.blocked{background:#fff5f5;border-color:#fcd4dc;}
 .slot-pill-label{color:var(--text);font-weight:500;}
 .slot-pill.blocked .slot-pill-label{color:var(--red);}
-.btn-lock{background:none;border:none;cursor:pointer;font-size:15px;line-height:1;padding:2px;-webkit-tap-highlight-color:transparent;}
+.btn-lock{background:none;border:none;cursor:pointer;font-size:15px;line-height:1;padding:2px;}
 
-/* AGENDAMENTOS TABLE → cards on mobile */
-.tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;}
-.dtbl{width:100%;border-collapse:collapse;font-size:13px;}
-.dtbl th{text-align:left;padding:10px 14px;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);background:var(--bg);}
-.dtbl td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
-.dtbl tr:last-child td{border-bottom:none;}
-.wa-link{color:var(--accent);text-decoration:none;font-weight:500;}
+/* ── AGENDAMENTOS POR DIA ── */
+.day-section{margin-bottom:20px;}
+.day-section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--accent);color:#fff;
+  padding:10px 16px;border-radius:var(--r) var(--r) 0 0;
+}
+.day-section-date{font-size:14px;font-weight:600;}
+.day-section-count{font-size:12px;opacity:.8;}
+.day-section-body{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);overflow:hidden;}
 
-/* booking cards for mobile */
-.bk-cards{display:none;}
-.bk-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:10px;}
-.bk-card-name{font-size:14px;font-weight:600;margin-bottom:6px;}
-.bk-card-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:3px;}
-.bk-card-row span:last-child{color:var(--text);font-weight:500;}
-.bk-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+/* bloco sub-header */
+.bloco-subheader{
+  display:flex;align-items:center;gap:8px;
+  background:var(--accent-light);padding:7px 14px;
+  border-bottom:1px solid var(--border);
+  font-size:11px;font-weight:600;color:var(--accent);
+}
+
+/* aluno row */
+.aluno-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--border);}
+.aluno-row:last-child{border-bottom:none;}
+.aluno-info{display:flex;flex-direction:column;gap:2px;}
+.aluno-nome{font-size:13px;font-weight:600;}
+.aluno-meta{font-size:11px;color:var(--muted);}
+.aluno-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.wa-btn{display:inline-flex;align-items:center;gap:4px;background:#25D366;color:#fff;text-decoration:none;font-size:11px;font-weight:600;padding:5px 10px;border-radius:6px;}
+.empty-day{padding:14px;font-size:12px;color:var(--muted);text-align:center;}
+
+/* agenda filter */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.filter-chip{padding:6px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;cursor:pointer;color:var(--muted);background:#fff;font-weight:500;white-space:nowrap;}
+.filter-chip.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+.notice{background:var(--green-light);border:1px solid #a9efd1;border-radius:var(--r);padding:12px 14px;font-size:13px;color:#027a48;font-weight:500;margin-bottom:16px;}
+.empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:14px;}
+.empty-ico{font-size:32px;margin-bottom:10px;}
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:13px;}
 
 /* MODAL */
 .modal-bg{position:fixed;inset:0;background:rgba(16,24,40,.5);display:flex;align-items:flex-end;justify-content:center;z-index:200;}
@@ -120,7 +125,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .fg-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .fg-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
 .days-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
-.day-chip{padding:8px 12px;border:1px solid var(--border2);border-radius:20px;font-size:13px;cursor:pointer;color:var(--muted);background:#fff;font-weight:500;user-select:none;-webkit-tap-highlight-color:transparent;}
+.day-chip{padding:8px 12px;border:1px solid var(--border2);border-radius:20px;font-size:13px;cursor:pointer;color:var(--muted);background:#fff;font-weight:500;user-select:none;}
 .day-chip.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
 .section-divider{border:none;border-top:1px solid var(--border);margin:16px 0 14px;}
 .section-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;}
@@ -132,12 +137,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .btn-confirm:hover{background:#163f70;}
 .btn-confirm:disabled{background:#93b3d8;cursor:not-allowed;}
 
-.notice{background:var(--green-light);border:1px solid #a9efd1;border-radius:var(--r);padding:12px 14px;font-size:13px;color:#027a48;font-weight:500;margin-bottom:16px;}
-.empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:14px;}
-.empty-ico{font-size:32px;margin-bottom:10px;}
-.loading{text-align:center;padding:40px;color:var(--muted);font-size:13px;}
-
-/* BOOKING PAGE */
+/* BOOKING */
 .book-top{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;}
 .book-top img{height:40px;width:auto;}
 .book-top-info h1{font-size:14px;font-weight:600;}
@@ -148,7 +148,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .book-notice-text{font-size:12px;color:#7A4F00;line-height:1.6;}
 .book-notice-text strong{font-weight:600;display:block;margin-bottom:2px;}
 .tabs{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px;}
-.tab{flex:1;padding:10px 6px;text-align:center;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;background:var(--surface);border:none;-webkit-tap-highlight-color:transparent;}
+.tab{flex:1;padding:10px 6px;text-align:center;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;background:var(--surface);border:none;}
 .tab:first-child{border-right:1px solid var(--border);}
 .tab.active{background:var(--accent);color:#fff;font-weight:600;}
 .book-section{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
@@ -156,7 +156,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .day-group{margin-bottom:14px;}
 .day-group-header{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;}
 .blocos-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.bloco-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.bloco-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;cursor:pointer;}
 .bloco-card:hover:not(.full){border-color:var(--accent);}
 .bloco-card.full{opacity:.5;cursor:not-allowed;}
 .bloco-card.chosen{border:2px solid var(--accent);background:var(--accent-light);}
@@ -168,7 +168,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .vagas-fill.warn{background:var(--yellow);}
 .vagas-fill.danger{background:var(--red);}
 .vagas-txt{font-size:10px;color:var(--muted);white-space:nowrap;}
-.slot-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:6px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.slot-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:6px;cursor:pointer;}
 .slot-row:hover:not(.full){border-color:var(--accent);}
 .slot-row.full{opacity:.5;cursor:not-allowed;}
 .slot-row.chosen{border:2px solid var(--accent);background:var(--accent-light);}
@@ -184,7 +184,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .fg-b input::placeholder{color:#aab0bb;}
 .book-form-actions{display:grid;grid-template-columns:auto 1fr;gap:10px;margin-top:6px;}
 .btn-back{background:none;border:1px solid var(--border2);color:var(--muted);padding:12px 16px;border-radius:var(--r);font-size:14px;cursor:pointer;}
-.btn-book{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.btn-book{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
 .btn-book:hover{background:#163f70;}
 .btn-book:disabled{background:#93b3d8;cursor:not-allowed;}
 .book-err{font-size:12px;color:var(--red);margin-top:6px;font-weight:500;}
@@ -198,7 +198,6 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .consulta-wrap p{font-size:13px;color:var(--muted);margin-bottom:16px;}
 .consulta-input-row{display:flex;flex-direction:column;gap:8px;}
 .consulta-input-row input{width:100%;padding:11px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:15px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
-.consulta-input-row input:focus{border-color:var(--accent);}
 .btn-consultar{width:100%;background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
 .consulta-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-top:10px;}
 .consulta-item-title{font-size:14px;font-weight:600;margin-bottom:4px;}
@@ -206,15 +205,12 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .consulta-empty{text-align:center;padding:20px;color:var(--muted);font-size:13px;}
 .consulta-err{font-size:12px;color:var(--red);margin-top:6px;}
 
-/* RESPONSIVE */
 @media(max-width:640px){
   .sidebar{display:none;}
   .bottom-nav{display:block;}
   .topbar-user{display:none;}
   .content{padding:14px 12px 80px;}
   .fg-3{grid-template-columns:1fr 1fr;}
-  .tbl-wrap{display:none;}
-  .bk-cards{display:block;}
   .modal-bg{align-items:flex-end;}
   .modal{border-radius:var(--r2) var(--r2) 0 0;padding-bottom:32px;}
 }
@@ -247,8 +243,8 @@ const insertAgenda=ag=>sb('agendas','POST',ag);
 const updateAgenda=(id,data)=>sb('agendas?id=eq.'+id,'PATCH',data);
 const deleteAgenda=id=>sb('agendas?id=eq.'+id,'DELETE');
 const getBookings=aid=>sb('bookings?agenda_id=eq.'+aid);
-const getAllBookings=()=>sb('bookings?order=criado_em.asc');
-const getBookingsByWA=wa=>sb('bookings?whatsapp=ilike.*'+encodeURIComponent(wa.replace(/\D/g,''))+'*&order=criado_em.desc');
+const getAllBookings=()=>sb('bookings?order=date_str.asc,horario.asc,criado_em.asc');
+const getBookingsByWA=wa=>sb('bookings?whatsapp=ilike.*'+encodeURIComponent(wa.replace(/\D/g,''))+'*&order=date_str.asc');
 const insertBooking=bk=>sb('bookings','POST',bk);
 const deleteBooking=id=>sb('bookings?id=eq.'+id,'DELETE');
 
@@ -258,6 +254,10 @@ function nextWD(from,idx){const d=new Date(from);const diff=(idx-d.getDay()+7)%7
 function fmtDate(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit'});}
 function fmtFull(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});}
 function fmtShort(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});}
+function fmtDateStr(ds){// ds = YYYY-MM-DD
+  const d=new Date(ds+'T12:00:00');
+  return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+}
 function link(id){return window.location.origin+window.location.pathname+'?lab='+id;}
 function hasBlocos(ag){return!!(ag.meio);}
 function getBlocked(ag){return ag.blocked_slots||[];}
@@ -283,6 +283,7 @@ function genDays(ag){
 let S={view:'login',loginErr:'',nav:'agendas',modal:null,editingId:null,
   form:{titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas:6},
   agendas:[],allBookings:[],copied:null,notice:false,loading:false,
+  filterAgendaId:'all',
   bp:{agendaId:null,slotKey:null,step:'choose',tab:'agendar',aluno:{nome:'',turma:'',whatsapp:''},
       err:'',done:false,lastBooking:null,agenda:null,bookings:[],
       consultaWA:'',consultaResult:null,consultaErr:'',consultaLoading:false}};
@@ -332,9 +333,8 @@ function renderAgendas(){
     const totalSlots=blocos?days.length*2:days.length,totalVagas=totalSlots*vpp;
     const ocup=S.allBookings.filter(b=>b.agenda_id===ag.id).length;
     const pct=totalVagas>0?ocup/totalVagas:0,bc=pct===0?'badge-open':pct>=1?'badge-full':'badge-partial',bt=pct===0?'Aberta':pct>=1?'Lotada':'Em andamento';
-    const nextDays=days.slice(0,6);
     let pills='';
-    nextDays.forEach(d=>{
+    days.slice(0,6).forEach(d=>{
       (d.isBlocos?[{k:d.key0,l:'B1'},{k:d.key1,l:'B2'}]:[{k:d.key,l:''}]).forEach(({k,l})=>{
         const locked=blocked.includes(k),label=fmtShort(d.date)+(l?' '+l:'');
         pills+='<div class="slot-pill'+(locked?' blocked':'')+'"><span class="slot-pill-label">'+(locked?'🔒 ':'')+label+'</span>'+
@@ -361,30 +361,74 @@ function renderAgendas(){
 }
 
 function renderAgendamentos(){
-  const bks=S.allBookings;
-  let h='<div class="ph"><div><div class="ph-title">Agendamentos</div><div class="ph-sub">'+bks.length+' registrado'+(bks.length!==1?'s':'')+'</div></div></div>';
-  if(!bks.length)return h+'<div class="empty"><div class="empty-ico">📋</div>Nenhum agendamento ainda.</div>';
-  // desktop table
-  h+='<div class="tbl-wrap"><table class="dtbl"><thead><tr><th>Aluno</th><th>Turma</th><th>WhatsApp</th><th>Agenda</th><th>Data</th><th>Horário</th><th></th></tr></thead><tbody>';
-  bks.forEach(b=>{const ag=S.agendas.find(a=>a.id===b.agenda_id);
-    h+='<tr><td><strong>'+b.nome+'</strong></td><td>'+b.turma+'</td>'+
-      '<td><a class="wa-link" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">'+b.whatsapp+'</a></td>'+
-      '<td>'+(ag?ag.titulo:'—')+'</td><td>'+b.data_fmt+'</td><td>'+b.horario+'</td>'+
-      '<td><button class="btn-sm btn-sm-danger" data-delb="'+b.id+'">×</button></td></tr>';});
-  h+='</tbody></table></div>';
-  // mobile cards
-  h+='<div class="bk-cards">';
-  bks.forEach(b=>{const ag=S.agendas.find(a=>a.id===b.agenda_id);
-    h+='<div class="bk-card"><div class="bk-card-name">'+b.nome+'</div>'+
-      '<div class="bk-card-row"><span>Turma</span><span>'+b.turma+'</span></div>'+
-      '<div class="bk-card-row"><span>Data</span><span>'+b.data_fmt+'</span></div>'+
-      '<div class="bk-card-row"><span>Horário</span><span>'+b.horario+'</span></div>'+
-      (ag?'<div class="bk-card-row"><span>Agenda</span><span>'+ag.titulo+'</span></div>':'')+
-      '<div class="bk-card-footer">'+
-        '<a class="wa-link" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">📱 '+b.whatsapp+'</a>'+
-        '<button class="btn-sm btn-sm-danger" data-delb="'+b.id+'">Remover</button>'+
-      '</div></div>';});
-  h+='</div>';
+  const allBks=S.allBookings;
+  const filteredBks=S.filterAgendaId==='all'?allBks:allBks.filter(b=>b.agenda_id===S.filterAgendaId);
+
+  // filter chips
+  let filterHtml='<div class="filter-bar">'+
+    '<div class="filter-chip '+(S.filterAgendaId==='all'?'active':'')+'" data-filter="all">Todas as agendas</div>'+
+    S.agendas.map(ag=>'<div class="filter-chip '+(S.filterAgendaId===ag.id?'active':'')+'" data-filter="'+ag.id+'">'+ag.titulo+'</div>').join('')+
+    '</div>';
+
+  let h='<div class="ph"><div><div class="ph-title">Agendamentos</div><div class="ph-sub">'+filteredBks.length+' registrado'+(filteredBks.length!==1?'s':'')+'</div></div></div>';
+  h+=filterHtml;
+
+  if(!filteredBks.length)return h+'<div class="empty"><div class="empty-ico">📋</div>Nenhum agendamento encontrado.</div>';
+
+  // group by date_str then by horario (bloco)
+  const byDate={};
+  filteredBks.forEach(b=>{
+    const ds=b.date_str||'';
+    if(!byDate[ds])byDate[ds]=[];
+    byDate[ds].push(b);
+  });
+
+  const sortedDates=Object.keys(byDate).sort();
+
+  sortedDates.forEach(ds=>{
+    const dayBks=byDate[ds];
+    const dateLabel=fmtDateStr(ds);
+
+    // group within day by horario
+    const byHorario={};
+    dayBks.forEach(b=>{
+      const h2=b.horario||'Horário não definido';
+      if(!byHorario[h2])byHorario[h2]=[];
+      byHorario[h2].push(b);
+    });
+    const horarios=Object.keys(byHorario).sort();
+    const hasMultipleHorarios=horarios.length>1;
+
+    h+='<div class="day-section">'+
+      '<div class="day-section-header">'+
+        '<span class="day-section-date">📅 '+dateLabel+'</span>'+
+        '<span class="day-section-count">'+dayBks.length+' aluno'+(dayBks.length!==1?'s':'')+'</span>'+
+      '</div>'+
+      '<div class="day-section-body">';
+
+    horarios.forEach(hor=>{
+      const horBks=byHorario[hor];
+      if(hasMultipleHorarios){
+        h+='<div class="bloco-subheader">🕐 '+hor+' <span style="margin-left:4px;opacity:.7;">('+horBks.length+' aluno'+(horBks.length!==1?'s':'')+')</span></div>';
+      }
+      horBks.forEach(b=>{
+        const ag=S.agendas.find(a=>a.id===b.agenda_id);
+        h+='<div class="aluno-row">'+
+          '<div class="aluno-info">'+
+            '<div class="aluno-nome">'+b.nome+'</div>'+
+            '<div class="aluno-meta">Turma '+b.turma+(ag?' · '+ag.titulo:'')+(hasMultipleHorarios?'':' · '+hor)+'</div>'+
+          '</div>'+
+          '<div class="aluno-actions">'+
+            '<a class="wa-btn" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">📱 WA</a>'+
+            '<button class="btn-sm btn-sm-danger" data-delb="'+b.id+'">✕</button>'+
+          '</div>'+
+        '</div>';
+      });
+    });
+
+    h+='</div></div>';
+  });
+
   return h;
 }
 
@@ -427,8 +471,7 @@ function getSlotInfo(ag,key,bookings){
   const days=genDays(ag);
   if(hasBlocos(ag)){
     const day=days.find(d=>d.key0===key||d.key1===key);if(!day)return null;
-    const isB1=day.key0===key,vpp=Math.floor((ag.vagas||6)/2),v=bookings.filter(b=>b.key===key).length;
-    const blocked=isBlocked(ag,key);
+    const isB1=day.key0===key,vpp=Math.floor((ag.vagas||6)/2),v=bookings.filter(b=>b.key===key).length,blocked=isBlocked(ag,key);
     return{day,horario:isB1?day.hora0:day.hora1,vpp,v,full:v>=vpp||blocked,blocked};
   }
   const day=days.find(d=>d.key===key);if(!day)return null;
@@ -542,6 +585,7 @@ function bindAdmin(){
   document.querySelectorAll('[data-nav]').forEach(el=>el.addEventListener('click',async()=>{
     S.nav=el.dataset.nav;S.notice=false;S.loading=true;render();
     const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];S.loading=false;render();}));
+  document.querySelectorAll('[data-filter]').forEach(el=>el.addEventListener('click',()=>{S.filterAgendaId=el.dataset.filter;render();}));
   document.getElementById('btn-nova')?.addEventListener('click',()=>{S.modal=true;S.editingId=null;S.form={titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas:6};render();});
   document.querySelectorAll('[data-edit]').forEach(el=>el.addEventListener('click',()=>{
     const ag=S.agendas.find(a=>a.id===el.dataset.edit);if(!ag)return;
