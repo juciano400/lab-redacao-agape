@@ -9,7 +9,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:14px;}
-:root{--bg:#F7F8FA;--surface:#fff;--border:#E4E7EC;--border2:#D0D5DD;--text:#101828;--muted:#667085;--accent:#1A4F8A;--accent-light:#EBF2FC;--red:#E8294A;--red-light:#FEF0F3;--green:#12B76A;--green-light:#ECFDF3;--yellow:#F79009;--yellow-light:#FFFAEB;--r:8px;--r2:12px;}
+:root{--bg:#F7F8FA;--surface:#fff;--border:#E4E7EC;--border2:#D0D5DD;--text:#101828;--muted:#667085;--accent:#1A4F8A;--accent-light:#EBF2FC;--red:#E8294A;--red-light:#FEF0F3;--green:#12B76A;--green-light:#ECFDF3;--yellow:#F79009;--yellow-light:#FFFAEB;--purple:#7C3AED;--purple-light:#F5F3FF;--r:8px;--r2:12px;}
 .login-bg{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px;}
 .login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:32px 24px;width:100%;max-width:380px;}
 .login-logo{text-align:center;margin-bottom:24px;}
@@ -72,46 +72,28 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .slot-pill-label{color:var(--text);font-weight:500;}
 .slot-pill.blocked .slot-pill-label{color:var(--red);}
 .btn-lock{background:none;border:none;cursor:pointer;font-size:15px;line-height:1;padding:2px;}
-
-/* ── AGENDAMENTOS POR DIA ── */
-.day-section{margin-bottom:20px;}
-.day-section-header{
-  display:flex;align-items:center;justify-content:space-between;
-  background:var(--accent);color:#fff;
-  padding:10px 16px;border-radius:var(--r) var(--r) 0 0;
-}
-.day-section-date{font-size:14px;font-weight:600;}
-.day-section-count{font-size:12px;opacity:.8;}
-.day-section-body{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);overflow:hidden;}
-
-/* bloco sub-header */
-.bloco-subheader{
-  display:flex;align-items:center;gap:8px;
-  background:var(--accent-light);padding:7px 14px;
-  border-bottom:1px solid var(--border);
-  font-size:11px;font-weight:600;color:var(--accent);
-}
-
-/* aluno row */
-.aluno-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--border);}
-.aluno-row:last-child{border-bottom:none;}
-.aluno-info{display:flex;flex-direction:column;gap:2px;}
-.aluno-nome{font-size:13px;font-weight:600;}
-.aluno-meta{font-size:11px;color:var(--muted);}
-.aluno-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.wa-btn{display:inline-flex;align-items:center;gap:4px;background:#25D366;color:#fff;text-decoration:none;font-size:11px;font-weight:600;padding:5px 10px;border-radius:6px;}
-.empty-day{padding:14px;font-size:12px;color:var(--muted);text-align:center;}
-
-/* agenda filter */
+/* AGENDAMENTOS */
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
 .filter-chip{padding:6px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;cursor:pointer;color:var(--muted);background:#fff;font-weight:500;white-space:nowrap;}
 .filter-chip.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-
+.day-section{margin-bottom:20px;}
+.day-section-header{display:flex;align-items:center;justify-content:space-between;background:var(--accent);color:#fff;padding:10px 16px;border-radius:var(--r) var(--r) 0 0;}
+.day-section-date{font-size:14px;font-weight:600;}
+.day-section-count{font-size:12px;opacity:.8;}
+.day-section-body{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);overflow:hidden;}
+.bloco-subheader{display:flex;align-items:center;gap:8px;background:var(--accent-light);padding:7px 14px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;color:var(--accent);}
+.aluno-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--border);gap:10px;}
+.aluno-row:last-child{border-bottom:none;}
+.aluno-info{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.aluno-nome{font-size:13px;font-weight:600;}
+.aluno-meta{font-size:11px;color:var(--muted);}
+.badge-comentada{display:inline-flex;align-items:center;gap:3px;background:var(--purple-light);color:var(--purple);font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;margin-top:2px;width:fit-content;}
+.aluno-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.wa-btn{display:inline-flex;align-items:center;gap:4px;background:#25D366;color:#fff;text-decoration:none;font-size:11px;font-weight:600;padding:5px 10px;border-radius:6px;}
 .notice{background:var(--green-light);border:1px solid #a9efd1;border-radius:var(--r);padding:12px 14px;font-size:13px;color:#027a48;font-weight:500;margin-bottom:16px;}
 .empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:14px;}
 .empty-ico{font-size:32px;margin-bottom:10px;}
 .loading{text-align:center;padding:40px;color:var(--muted);font-size:13px;}
-
 /* MODAL */
 .modal-bg{position:fixed;inset:0;background:rgba(16,24,40,.5);display:flex;align-items:flex-end;justify-content:center;z-index:200;}
 .modal{background:var(--surface);border-radius:var(--r2) var(--r2) 0 0;padding:24px 20px;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;}
@@ -136,7 +118,6 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .btn-confirm{flex:2;background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
 .btn-confirm:hover{background:#163f70;}
 .btn-confirm:disabled{background:#93b3d8;cursor:not-allowed;}
-
 /* BOOKING */
 .book-top{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;}
 .book-top img{height:40px;width:auto;}
@@ -182,6 +163,14 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .fg-b input{width:100%;padding:11px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:15px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
 .fg-b input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,79,138,.1);}
 .fg-b input::placeholder{color:#aab0bb;}
+/* CHECKBOX OPTION */
+.option-check{display:flex;align-items:flex-start;gap:12px;background:var(--purple-light);border:1.5px solid #DDD6FE;border-radius:var(--r);padding:14px;margin-bottom:14px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.option-check.checked{border-color:var(--purple);background:#EDE9FE;}
+.option-check-box{width:20px;height:20px;border:2px solid #A78BFA;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;background:#fff;}
+.option-check.checked .option-check-box{background:var(--purple);border-color:var(--purple);}
+.option-check-text{}
+.option-check-title{font-size:13px;font-weight:600;color:var(--purple);}
+.option-check-sub{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;}
 .book-form-actions{display:grid;grid-template-columns:auto 1fr;gap:10px;margin-top:6px;}
 .btn-back{background:none;border:1px solid var(--border2);color:var(--muted);padding:12px 16px;border-radius:var(--r);font-size:14px;cursor:pointer;}
 .btn-book{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;}
@@ -193,6 +182,7 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .confirm-t{font-size:18px;font-weight:600;margin-bottom:6px;}
 .confirm-highlight{font-size:15px;font-weight:600;color:var(--accent);margin:8px 0 4px;}
 .confirm-d{font-size:13px;color:var(--muted);line-height:1.8;}
+.confirm-badge{display:inline-flex;align-items:center;gap:4px;background:var(--purple-light);color:var(--purple);font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;margin-top:10px;}
 .consulta-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:20px;}
 .consulta-wrap h2{font-size:15px;font-weight:600;margin-bottom:6px;}
 .consulta-wrap p{font-size:13px;color:var(--muted);margin-bottom:16px;}
@@ -204,7 +194,6 @@ body{font-family:'Inter',sans-serif;background:#F7F8FA;color:#101828;font-size:1
 .consulta-item-meta{font-size:12px;color:var(--muted);line-height:1.7;}
 .consulta-empty{text-align:center;padding:20px;color:var(--muted);font-size:13px;}
 .consulta-err{font-size:12px;color:var(--red);margin-top:6px;}
-
 @media(max-width:640px){
   .sidebar{display:none;}
   .bottom-nav{display:block;}
@@ -254,10 +243,7 @@ function nextWD(from,idx){const d=new Date(from);const diff=(idx-d.getDay()+7)%7
 function fmtDate(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit'});}
 function fmtFull(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});}
 function fmtShort(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});}
-function fmtDateStr(ds){// ds = YYYY-MM-DD
-  const d=new Date(ds+'T12:00:00');
-  return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
-}
+function fmtDateStr(ds){const d=new Date(ds+'T12:00:00');return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});}
 function link(id){return window.location.origin+window.location.pathname+'?lab='+id;}
 function hasBlocos(ag){return!!(ag.meio);}
 function getBlocked(ag){return ag.blocked_slots||[];}
@@ -282,9 +268,9 @@ function genDays(ag){
 
 let S={view:'login',loginErr:'',nav:'agendas',modal:null,editingId:null,
   form:{titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas:6},
-  agendas:[],allBookings:[],copied:null,notice:false,loading:false,
-  filterAgendaId:'all',
-  bp:{agendaId:null,slotKey:null,step:'choose',tab:'agendar',aluno:{nome:'',turma:'',whatsapp:''},
+  agendas:[],allBookings:[],copied:null,notice:false,loading:false,filterAgendaId:'all',
+  bp:{agendaId:null,slotKey:null,step:'choose',tab:'agendar',
+      aluno:{nome:'',turma:'',whatsapp:'',soComentada:false},
       err:'',done:false,lastBooking:null,agenda:null,bookings:[],
       consultaWA:'',consultaResult:null,consultaErr:'',consultaLoading:false}};
 
@@ -319,8 +305,7 @@ function renderAdmin(){
     '<div class="bottom-nav"><div class="bottom-nav-inner">'+
     '<button class="bn-item '+(S.nav==='agendas'?'active':'')+'" data-nav="agendas"><span class="bn-icon">📅</span>Agendas</button>'+
     '<button class="bn-item '+(S.nav==='agendamentos'?'active':'')+'" data-nav="agendamentos"><span class="bn-icon">📋</span>Agendamentos</button>'+
-    '</div></div>'+
-    (S.modal?renderModal():'');
+    '</div></div>'+(S.modal?renderModal():'');
 }
 
 function renderAgendas(){
@@ -363,60 +348,34 @@ function renderAgendas(){
 function renderAgendamentos(){
   const allBks=S.allBookings;
   const filteredBks=S.filterAgendaId==='all'?allBks:allBks.filter(b=>b.agenda_id===S.filterAgendaId);
-
-  // filter chips
   let filterHtml='<div class="filter-bar">'+
-    '<div class="filter-chip '+(S.filterAgendaId==='all'?'active':'')+'" data-filter="all">Todas as agendas</div>'+
+    '<div class="filter-chip '+(S.filterAgendaId==='all'?'active':'')+'" data-filter="all">Todas</div>'+
     S.agendas.map(ag=>'<div class="filter-chip '+(S.filterAgendaId===ag.id?'active':'')+'" data-filter="'+ag.id+'">'+ag.titulo+'</div>').join('')+
     '</div>';
-
-  let h='<div class="ph"><div><div class="ph-title">Agendamentos</div><div class="ph-sub">'+filteredBks.length+' registrado'+(filteredBks.length!==1?'s':'')+'</div></div></div>';
-  h+=filterHtml;
-
+  let h='<div class="ph"><div><div class="ph-title">Agendamentos</div><div class="ph-sub">'+filteredBks.length+' registrado'+(filteredBks.length!==1?'s':'')+'</div></div></div>'+filterHtml;
   if(!filteredBks.length)return h+'<div class="empty"><div class="empty-ico">📋</div>Nenhum agendamento encontrado.</div>';
 
-  // group by date_str then by horario (bloco)
   const byDate={};
-  filteredBks.forEach(b=>{
-    const ds=b.date_str||'';
-    if(!byDate[ds])byDate[ds]=[];
-    byDate[ds].push(b);
-  });
-
-  const sortedDates=Object.keys(byDate).sort();
-
-  sortedDates.forEach(ds=>{
-    const dayBks=byDate[ds];
-    const dateLabel=fmtDateStr(ds);
-
-    // group within day by horario
+  filteredBks.forEach(b=>{const ds=b.date_str||'';if(!byDate[ds])byDate[ds]=[];byDate[ds].push(b);});
+  Object.keys(byDate).sort().forEach(ds=>{
+    const dayBks=byDate[ds],dateLabel=fmtDateStr(ds);
     const byHorario={};
-    dayBks.forEach(b=>{
-      const h2=b.horario||'Horário não definido';
-      if(!byHorario[h2])byHorario[h2]=[];
-      byHorario[h2].push(b);
-    });
-    const horarios=Object.keys(byHorario).sort();
-    const hasMultipleHorarios=horarios.length>1;
-
+    dayBks.forEach(b=>{const hh=b.horario||'?';if(!byHorario[hh])byHorario[hh]=[];byHorario[hh].push(b);});
+    const horarios=Object.keys(byHorario).sort(),hasMulti=horarios.length>1;
     h+='<div class="day-section">'+
-      '<div class="day-section-header">'+
-        '<span class="day-section-date">📅 '+dateLabel+'</span>'+
-        '<span class="day-section-count">'+dayBks.length+' aluno'+(dayBks.length!==1?'s':'')+'</span>'+
-      '</div>'+
+      '<div class="day-section-header"><span class="day-section-date">📅 '+dateLabel+'</span><span class="day-section-count">'+dayBks.length+' aluno'+(dayBks.length!==1?'s':'')+'</span></div>'+
       '<div class="day-section-body">';
-
     horarios.forEach(hor=>{
       const horBks=byHorario[hor];
-      if(hasMultipleHorarios){
-        h+='<div class="bloco-subheader">🕐 '+hor+' <span style="margin-left:4px;opacity:.7;">('+horBks.length+' aluno'+(horBks.length!==1?'s':'')+')</span></div>';
-      }
+      if(hasMulti)h+='<div class="bloco-subheader">🕐 '+hor+' <span style="margin-left:4px;opacity:.7;">('+horBks.length+' aluno'+(horBks.length!==1?'s':'')+')</span></div>';
       horBks.forEach(b=>{
         const ag=S.agendas.find(a=>a.id===b.agenda_id);
+        const soComentada=b.so_comentada||false;
         h+='<div class="aluno-row">'+
           '<div class="aluno-info">'+
             '<div class="aluno-nome">'+b.nome+'</div>'+
-            '<div class="aluno-meta">Turma '+b.turma+(ag?' · '+ag.titulo:'')+(hasMultipleHorarios?'':' · '+hor)+'</div>'+
+            '<div class="aluno-meta">Turma '+b.turma+(ag?' · '+ag.titulo:'')+(hasMulti?'':' · '+hor)+'</div>'+
+            (soComentada?'<div class="badge-comentada">✏️ Só correção comentada</div>':'')+
           '</div>'+
           '<div class="aluno-actions">'+
             '<a class="wa-btn" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">📱 WA</a>'+
@@ -425,10 +384,8 @@ function renderAgendamentos(){
         '</div>';
       });
     });
-
     h+='</div></div>';
   });
-
   return h;
 }
 
@@ -484,7 +441,8 @@ async function renderBookPage(aid){
   try{
     const[agendas,bookings]=await Promise.all([getAgendas(),getBookings(aid)]);
     const ag=agendas.find(a=>a.id===aid);
-    S.bp={...S.bp,agenda:ag,bookings:bookings||[],agendaId:aid,step:'choose',slotKey:null,done:false,tab:S.bp.tab||'agendar'};
+    S.bp={...S.bp,agenda:ag,bookings:bookings||[],agendaId:aid,step:'choose',slotKey:null,done:false,
+          tab:S.bp.tab||'agendar',aluno:{nome:'',turma:'',whatsapp:'',soComentada:false}};
     app.innerHTML=renderBook();bindBook();
   }catch(e){app.innerHTML='<div class="empty" style="padding:80px;"><div class="empty-ico">❌</div>Erro ao carregar.</div>';}
 }
@@ -498,30 +456,50 @@ function renderBook(){
   const aviso='<div class="book-notice"><div class="book-notice-icon">📝</div><div class="book-notice-text"><strong>Atenção</strong>O aluno poderá trazer redações da semana para a correção.</div></div>';
   const tabs='<div class="tabs"><button class="tab '+(bp.tab==='agendar'?'active':'')+'" id="tab-agendar">📅 Agendar</button><button class="tab '+(bp.tab==='consultar'?'active':'')+'" id="tab-consultar">🔍 Consultar</button></div>';
 
-  if(bp.done&&bp.lastBooking){const bk=bp.lastBooking;
-    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="confirm-card"><div class="confirm-ico">✅</div><div class="confirm-t">Confirmado!</div><div class="confirm-highlight">'+bk.nome+'</div><div class="confirm-d">'+bk.data_fmt+'<br>'+bk.horario+'<br>Turma: '+bk.turma+'</div></div></div>';}
+  if(bp.done&&bp.lastBooking){
+    const bk=bp.lastBooking;
+    return hdr+'<div class="book-body">'+aviso+tabs+
+      '<div class="confirm-card"><div class="confirm-ico">✅</div><div class="confirm-t">Confirmado!</div>'+
+      '<div class="confirm-highlight">'+bk.nome+'</div>'+
+      '<div class="confirm-d">'+bk.data_fmt+'<br>'+bk.horario+'<br>Turma: '+bk.turma+'</div>'+
+      (bk.so_comentada?'<div class="confirm-badge">✏️ Só correção comentada</div>':'')+
+      '</div></div>';
+  }
 
   if(bp.tab==='consultar'){
     let rHtml='';
     if(bp.consultaLoading)rHtml='<div class="consulta-empty">Buscando...</div>';
     else if(bp.consultaResult!==null)rHtml=bp.consultaResult.length===0
       ?'<div class="consulta-empty">Nenhum agendamento encontrado.</div>'
-      :bp.consultaResult.map(b=>'<div class="consulta-item"><div class="consulta-item-title">'+b.nome+'</div><div class="consulta-item-meta">📅 '+b.data_fmt+'<br>🕐 '+b.horario+'<br>🏫 '+b.turma+'</div></div>').join('');
+      :bp.consultaResult.map(b=>'<div class="consulta-item"><div class="consulta-item-title">'+b.nome+'</div>'+
+          '<div class="consulta-item-meta">📅 '+b.data_fmt+'<br>🕐 '+b.horario+'<br>🏫 '+b.turma+
+          (b.so_comentada?'<br><span style="color:#7C3AED;font-weight:600;">✏️ Só correção comentada</span>':'')+'</div></div>').join('');
     return hdr+'<div class="book-body">'+aviso+tabs+'<div class="consulta-wrap"><h2>Consultar agendamento</h2><p>Digite o WhatsApp usado no agendamento.</p>'+
       '<div class="consulta-input-row"><input type="tel" id="c-wa" value="'+bp.consultaWA+'" placeholder="(88) 99999-9999"/>'+
       '<button class="btn-consultar" id="btn-consultar">Buscar</button></div>'+
-      (bp.consultaErr?'<p class="consulta-err">'+bp.consultaErr+'</p>':'')+rHtml+'</div></div>';}
+      (bp.consultaErr?'<p class="consulta-err">'+bp.consultaErr+'</p>':'')+rHtml+'</div></div>';
+  }
 
   if(bp.step==='form'){
     const info=getSlotInfo(ag,bp.slotKey,bp.bookings);
+    const sc=bp.aluno.soComentada;
     return hdr+'<div class="book-body">'+aviso+tabs+'<div class="book-section">Seus dados</div><div class="form-card">'+
       '<div class="slot-chosen-info">📅 '+(info?fmtFull(info.day.date)+' · '+info.horario:'')+'</div>'+
       '<div class="fg-b"><label>Nome completo</label><input type="text" id="b-nome" value="'+bp.aluno.nome+'" placeholder="Seu nome completo"/></div>'+
       '<div class="fg-2"><div class="fg-b"><label>Turma</label><input type="text" id="b-turma" value="'+bp.aluno.turma+'" placeholder="Ex: 3º A"/></div>'+
       '<div class="fg-b"><label>WhatsApp</label><input type="tel" id="b-wa" value="'+bp.aluno.whatsapp+'" placeholder="(88) 99999-9999"/></div></div>'+
+      '<div class="option-check '+(sc?'checked':'')+'" id="opt-comentada">'+
+        '<div class="option-check-box">'+(sc?'<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+
+        '</div>'+
+        '<div class="option-check-text">'+
+          '<div class="option-check-title">✏️ Desejo apenas a correção comentada</div>'+
+          '<div class="option-check-sub">Marque esta opção se você quer receber feedback escrito, sem sessão presencial de revisão.</div>'+
+        '</div>'+
+      '</div>'+
       '<div class="book-form-actions"><button class="btn-back" id="b-back">← Voltar</button><button class="btn-book" id="b-conf">Confirmar agendamento</button></div>'+
       (bp.err?'<p class="book-err">'+bp.err+'</p>':'')+
-      '</div></div>';}
+      '</div></div>';
+  }
 
   const weeks={};
   days.forEach(d=>{const wk='Semana de '+d.date.toLocaleDateString('pt-BR',{day:'2-digit',month:'long'});if(!weeks[wk])weeks[wk]=[];weeks[wk].push(d);});
@@ -635,6 +613,13 @@ function bindBook(){
     if(!info||info.full)return;bp.slotKey=el.dataset.slot;app.innerHTML=renderBook();bindBook();}));
   document.getElementById('b-prox')?.addEventListener('click',()=>{bp.step='form';app.innerHTML=renderBook();bindBook();});
   document.getElementById('b-back')?.addEventListener('click',()=>{bp.step='choose';app.innerHTML=renderBook();bindBook();});
+  document.getElementById('opt-comentada')?.addEventListener('click',()=>{
+    bp.aluno.soComentada=!bp.aluno.soComentada;
+    // persist typed values before re-render
+    bp.aluno.nome=document.getElementById('b-nome')?.value||'';
+    bp.aluno.turma=document.getElementById('b-turma')?.value||'';
+    bp.aluno.whatsapp=document.getElementById('b-wa')?.value||'';
+    app.innerHTML=renderBook();bindBook();});
   document.getElementById('b-conf')?.addEventListener('click',async()=>{
     const nome=document.getElementById('b-nome')?.value.trim(),turma=document.getElementById('b-turma')?.value.trim(),whatsapp=document.getElementById('b-wa')?.value.trim();
     if(!nome||!turma||!whatsapp){bp.err='Preencha todos os campos.';app.innerHTML=renderBook();bindBook();return;}
@@ -643,7 +628,7 @@ function bindBook(){
     if(!info||info.full){bp.err='Slot não disponível. Escolha outro.';bp.bookings=fresh;bp.step='choose';bp.slotKey=null;app.innerHTML=renderBook();bindBook();return;}
     const btn=document.getElementById('b-conf');btn.disabled=true;btn.textContent='Confirmando...';
     try{
-      const bk={id:uid(),agenda_id:bp.agenda.id,key:bp.slotKey,date_str:info.day.dateStr,data_fmt:fmtFull(info.day.date),horario:info.horario,nome,turma,whatsapp};
+      const bk={id:uid(),agenda_id:bp.agenda.id,key:bp.slotKey,date_str:info.day.dateStr,data_fmt:fmtFull(info.day.date),horario:info.horario,nome,turma,whatsapp,so_comentada:bp.aluno.soComentada};
       await insertBooking(bk);bp.lastBooking=bk;bp.done=true;app.innerHTML=renderBook();
     }catch(e){bp.err='Erro ao confirmar.';btn.disabled=false;btn.textContent='Confirmar agendamento';app.innerHTML=renderBook();bindBook();}});
 }
