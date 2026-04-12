@@ -278,9 +278,19 @@ function skB(aid,ds,di,bl){return aid+'|'+ds+'|'+di+'|'+bl;}
 function isB2key(key){return key.endsWith('|1');}
 
 function genDays(ag){
-  const days=[],today=new Date();today.setHours(0,0,0,0);
+  const days=[];
+  // anchor: use data_inicio if set, otherwise today
+  let anchor;
+  if(ag.data_inicio){
+    anchor=new Date(ag.data_inicio+'T12:00:00');
+  } else {
+    anchor=new Date();anchor.setHours(0,0,0,0);
+  }
   ag.dias.forEach(di=>{
-    let d=nextWD(today,di);
+    // find first occurrence of weekday on or after anchor
+    let d=new Date(anchor);
+    const diff=(di-d.getDay()+7)%7;
+    d.setDate(d.getDate()+diff);
     for(let w=0;w<ag.semanas;w++){
       const ds=d.toISOString().slice(0,10);
       if(hasBlocos(ag)){
@@ -299,7 +309,7 @@ function genDays(ag){
 }
 
 let S={view:'login',loginErr:'',nav:'agendas',modal:null,editingId:null,
-  form:{titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas_b1:3,vagas_b2:3},
+  form:{titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas_b1:3,vagas_b2:3,data_inicio:''},
   agendas:[],allBookings:[],copied:null,notice:false,loading:false,filterAgendaId:'all',
   bp:{agendaId:null,slotKey:null,step:'choose',tab:'agendar',
       aluno:{nome:'',turma:'',whatsapp:''},
@@ -402,38 +412,50 @@ function renderAgendamentos(){
   filteredBks.forEach(b=>{if(!byDate[b.date_str||''])byDate[b.date_str||'']=[];byDate[b.date_str||''].push(b);});
   Object.keys(byDate).sort().forEach(ds=>{
     const dayBks=byDate[ds];
-    // separate by tipo: b1=assessoria, b2=correção, legacy=sem tipo
     const b1bks=dayBks.filter(b=>b.tipo_bloco==='b1');
     const b2bks=dayBks.filter(b=>b.tipo_bloco==='b2');
     const legBks=dayBks.filter(b=>!b.tipo_bloco);
     h+='<div class="day-section">'+
-      '<div class="day-section-header"><span class="day-section-date">📅 '+fmtDateStr(ds)+'</span><span class="day-section-count">'+dayBks.length+' aluno'+(dayBks.length!==1?'s':'')+'</span></div>'+
+      '<div class="day-section-header"><span class="day-section-date">📅 '+fmtDateStr(ds)+'</span>'+
+      '<span class="day-section-count">'+dayBks.length+' aluno'+(dayBks.length!==1?'s':'')+'</span></div>'+
       '<div class="day-section-body">';
-    // assessoria block
     if(b1bks.length){
-      h+='<div class="bloco-subheader-b1">📋 Assessoria e Projeto de Texto &nbsp;·&nbsp; <span style="opacity:.75;">'+b1bks.length+' aluno'+(b1bks.length!==1?'s':'')+'</span></div>';
-      b1bks.forEach(b=>{h+=alunoRow(b);});
+      // find horario for b1
+      const h1=b1bks[0].horario||'';
+      h+='<div class="bloco-subheader-b1">📋 Assessoria e Projeto de Texto'+(h1?' &nbsp;·&nbsp; '+h1:'')+
+        ' &nbsp;<span style="opacity:.7;">('+b1bks.length+' aluno'+(b1bks.length!==1?'s':'')+')</span></div>';
+      b1bks.forEach(b=>{h+=alunoRow(b,false);});
     }
-    // correção block
     if(b2bks.length){
-      h+='<div class="bloco-subheader-b2">✏️ Correção Comentada &nbsp;·&nbsp; <span style="opacity:.75;">'+b2bks.length+' aluno'+(b2bks.length!==1?'s':'')+'</span></div>';
-      b2bks.forEach(b=>{h+=alunoRow(b);});
+      const h2=b2bks[0].horario||'';
+      h+='<div class="bloco-subheader-b2">✏️ Correção Comentada'+(h2?' &nbsp;·&nbsp; '+h2:'')+
+        ' &nbsp;<span style="opacity:.7;">('+b2bks.length+' aluno'+(b2bks.length!==1?'s':'')+')</span></div>';
+      b2bks.forEach(b=>{h+=alunoRow(b,false);});
     }
-    // legacy (no tipo)
     if(legBks.length){
-      legBks.forEach(b=>{h+=alunoRow(b);});
+      if(legBks[0].horario){
+        // group legacy by horario
+        const byH={};
+        legBks.forEach(b=>{if(!byH[b.horario])byH[b.horario]=[];byH[b.horario].push(b);});
+        Object.keys(byH).sort().forEach(hor=>{
+          if(Object.keys(byH).length>1)h+='<div class="bloco-subheader-b1" style="background:var(--bg);color:var(--muted);">🕐 '+hor+' ('+byH[hor].length+' aluno'+(byH[hor].length!==1?'s':'')+')</div>';
+          byH[hor].forEach(b=>{h+=alunoRow(b,Object.keys(byH).length===1);});
+        });
+      } else {
+        legBks.forEach(b=>{h+=alunoRow(b,true);});
+      }
     }
     h+='</div></div>';
   });
   return h;
 }
 
-function alunoRow(b){
+function alunoRow(b,showHorario){
   const ag=S.agendas.find(a=>a.id===b.agenda_id);
   return'<div class="aluno-row">'+
     '<div class="aluno-info">'+
       '<div class="aluno-nome">'+b.nome+'</div>'+
-      '<div class="aluno-meta">Turma '+b.turma+(ag?' · '+ag.titulo:'')+(b.horario?' · '+b.horario:'')+'</div>'+
+      '<div class="aluno-meta">Turma '+b.turma+(ag?' · '+ag.titulo:'')+(showHorario&&b.horario?' · '+b.horario:'')+'</div>'+
     '</div>'+
     '<div class="aluno-actions">'+
       '<a class="wa-btn" href="https://wa.me/55'+b.whatsapp.replace(/\D/g,'')+'" target="_blank">📱 WA</a>'+
@@ -469,6 +491,7 @@ function renderModal(){
     '<div class="fg-m" style="margin-top:14px;"><label>Número de semanas</label><select id="m-sem">'+
     [1,2,3,4,5,6,8,10,12,16,20,24,36,48,52].map(n=>'<option value="'+n+'" '+(f.semanas===n?'selected':'')+'>'+n+' semana'+(n>1?'s':'')+'</option>').join('')+
     '</select></div>'+
+    '<div class="fg-m"><label>Data de início da primeira semana <span style="color:var(--muted);font-weight:400;">(opcional — padrão: hoje)</span></label><input type="date" id="m-datainicio" value="'+f.data_inicio+'"/></div>'+
     '<div class="modal-footer"><button class="btn-cancel" id="m-cancel">Cancelar</button>'+
     '<button class="btn-confirm" id="m-save">'+(isEdit?'Salvar':'Criar agenda')+'</button></div>'+
     '</div></div>';
@@ -630,11 +653,11 @@ function bindAdmin(){
     S.nav=el.dataset.nav;S.notice=false;S.loading=true;render();
     const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];S.loading=false;render();}));
   document.querySelectorAll('[data-filter]').forEach(el=>el.addEventListener('click',()=>{S.filterAgendaId=el.dataset.filter;render();}));
-  document.getElementById('btn-nova')?.addEventListener('click',()=>{S.modal=true;S.editingId=null;S.form={titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas_b1:3,vagas_b2:3};render();});
+  document.getElementById('btn-nova')?.addEventListener('click',()=>{S.modal=true;S.editingId=null;S.form={titulo:'',semanas:4,dias:[],inicio:'13:00',meio:'15:00',fim:'17:00',vagas_b1:3,vagas_b2:3,data_inicio:''};render();});
   document.querySelectorAll('[data-edit]').forEach(el=>el.addEventListener('click',()=>{
     const ag=S.agendas.find(a=>a.id===el.dataset.edit);if(!ag)return;
     S.editingId=ag.id;S.modal=true;
-    S.form={titulo:ag.titulo,semanas:ag.semanas,dias:[...ag.dias],inicio:ag.inicio,meio:ag.meio||'',fim:ag.fim,vagas_b1:ag.vagas_b1||3,vagas_b2:ag.vagas_b2||3};render();}));
+    S.form={titulo:ag.titulo,semanas:ag.semanas,dias:[...ag.dias],inicio:ag.inicio,meio:ag.meio||'',fim:ag.fim,vagas_b1:ag.vagas_b1||3,vagas_b2:ag.vagas_b2||3,data_inicio:ag.data_inicio||''};render();}));
   document.getElementById('m-cancel')?.addEventListener('click',()=>{S.modal=null;S.editingId=null;render();});
   document.getElementById('mbg')?.addEventListener('click',ev=>{if(ev.target.id==='mbg'){S.modal=null;S.editingId=null;render();}});
   document.querySelectorAll('[data-dia]').forEach(el=>el.addEventListener('click',()=>{
@@ -650,11 +673,12 @@ function bindAdmin(){
     const semanas=parseInt(document.getElementById('m-sem')?.value);
     const vagas_b1=parseInt(document.getElementById('m-vb1')?.value)||3;
     const vagas_b2=parseInt(document.getElementById('m-vb2')?.value)||3;
+    const data_inicio=document.getElementById('m-datainicio')?.value||'';
     if(!titulo||!S.form.dias.length||!inicio||!meio||!fim){alert('Preencha o título, selecione ao menos um dia e defina os horários.');return;}
     if(inicio>=meio||meio>=fim){alert('Horários devem ser em ordem crescente: Início < Divisão < Fim.');return;}
     const btn=document.getElementById('m-save');btn.textContent='Salvando...';btn.disabled=true;
     try{
-      const data={titulo,semanas,dias:S.form.dias.sort(),inicio,meio,fim,vagas_b1,vagas_b2};
+      const data={titulo,semanas,dias:S.form.dias.sort(),inicio,meio,fim,vagas_b1,vagas_b2,data_inicio:data_inicio||null};
       if(S.editingId){await updateAgenda(S.editingId,data);S.notice='edit';}
       else{await insertAgenda({id:uid(),...data});S.notice='new';}
       const[ag,bk]=await Promise.all([getAgendas(),getAllBookings()]);S.agendas=ag||[];S.allBookings=bk||[];S.modal=null;S.editingId=null;render();
