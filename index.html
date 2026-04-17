@@ -273,6 +273,7 @@ const deleteAgenda=id=>sb('agendas?id=eq.'+id,'DELETE');
 const getBookings=aid=>sb('bookings?agenda_id=eq.'+aid+'&status=eq.aprovado');
 const getAllBookings=()=>sb('bookings?order=date_str.asc,horario.asc,criado_em.asc');
 const getBookingsByWA=wa=>sb('bookings?whatsapp=ilike.*'+encodeURIComponent(wa.replace(/\D/g,''))+'*&order=date_str.asc');
+const getBookingsByEmail=em=>sb('bookings?email=ilike.*'+encodeURIComponent(em.trim())+'*&order=date_str.asc');
 const insertBooking=bk=>sb('bookings','POST',bk);
 const updateBooking=(id,data)=>sb('bookings?id=eq.'+id,'PATCH',data);
 const deleteBooking=id=>sb('bookings?id=eq.'+id,'DELETE');
@@ -546,8 +547,8 @@ function renderBook(){
           (isB1?'<br><span style="color:var(--b1);font-weight:600;">📋 Assessoria e Projeto de Texto</span>':isB2?'<br><span style="color:var(--b2);font-weight:600;">✏️ Correção Comentada</span>':'')+
           '</div></div>';
       }).join('');
-    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="consulta-wrap"><h2>Consultar agendamento</h2><p>Digite o WhatsApp usado no agendamento.</p>'+
-      '<div class="consulta-input-row"><input type="tel" id="c-wa" value="'+bp.consultaWA+'" placeholder="(88) 99999-9999"/>'+
+    return hdr+'<div class="book-body">'+aviso+tabs+'<div class="consulta-wrap"><h2>Consultar agendamento</h2><p>Digite seu WhatsApp ou e-mail usado no agendamento.</p>'+
+      '<div class="consulta-input-row"><input type="text" id="c-wa" value="'+bp.consultaWA+'" placeholder="WhatsApp ou e-mail"/>'+
       '<button class="btn-consultar" id="btn-consultar">Buscar</button></div>'+
       (bp.consultaErr?'<p class="consulta-err">'+bp.consultaErr+'</p>':'')+rHtml+'</div></div>';
   }
@@ -690,11 +691,14 @@ function bindBook(){
   document.getElementById('tab-agendar')?.addEventListener('click',()=>{bp.tab='agendar';app.innerHTML=renderBook();bindBook();});
   document.getElementById('tab-consultar')?.addEventListener('click',()=>{bp.tab='consultar';app.innerHTML=renderBook();bindBook();});
   document.getElementById('btn-consultar')?.addEventListener('click',async()=>{
-    const wa=document.getElementById('c-wa')?.value.trim();
-    if(!wa){bp.consultaErr='Digite seu número de WhatsApp.';app.innerHTML=renderBook();bindBook();return;}
-    bp.consultaWA=wa;bp.consultaErr='';bp.consultaLoading=true;bp.consultaResult=null;app.innerHTML=renderBook();bindBook();
-    try{const r=await getBookingsByWA(wa);bp.consultaResult=r||[];bp.consultaLoading=false;app.innerHTML=renderBook();bindBook();}
-    catch(e){bp.consultaErr='Erro ao buscar.';bp.consultaLoading=false;app.innerHTML=renderBook();bindBook();}});
+    const val=document.getElementById('c-wa')?.value.trim();
+    if(!val){bp.consultaErr='Digite seu WhatsApp ou e-mail.';app.innerHTML=renderBook();bindBook();return;}
+    bp.consultaWA=val;bp.consultaErr='';bp.consultaLoading=true;bp.consultaResult=null;app.innerHTML=renderBook();bindBook();
+    try{
+      const isEmail=val.includes('@');
+      const r=isEmail?await getBookingsByEmail(val):await getBookingsByWA(val);
+      bp.consultaResult=r||[];bp.consultaLoading=false;app.innerHTML=renderBook();bindBook();
+    }catch(e){bp.consultaErr='Erro ao buscar.';bp.consultaLoading=false;app.innerHTML=renderBook();bindBook();}});
   document.getElementById('c-wa')?.addEventListener('keydown',ev=>{if(ev.key==='Enter')document.getElementById('btn-consultar')?.click();});
   document.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>{
     const info=getSlotInfo(bp.agenda,el.dataset.slot,bp.bookings);
